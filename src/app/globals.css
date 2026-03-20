@@ -24,6 +24,12 @@ body {
     "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
   --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+  font-size: 16.1px;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  overflow-wrap: anywhere;
+  line-break: strict;
+  -webkit-text-size-adjust: 100%;
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
