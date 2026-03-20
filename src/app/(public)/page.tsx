@@ -10,10 +10,10 @@ export default function LandingPage() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   return (
-    <div className="bg-white flex flex-col items-start min-h-screen">
+    <div className="bg-white flex flex-col items-start flex-1">
       <div className="flex flex-col gap-[40.26px] items-center w-full pt-[96.59px]">
         {/* Hero Section */}
-        <div className="flex flex-col gap-[64.4px] items-start w-[603.5px] max-w-full px-4 mx-auto">
+        <div className="flex flex-col gap-[64.4px] items-start w-full max-w-171 px-6 mx-auto">
           {/* Header: Logo + Title + Button */}
           <div className="flex flex-col items-center w-full">
             <Image
@@ -67,7 +67,7 @@ export default function LandingPage() {
           </div>
 
           {/* CTA Card */}
-          <div className="border border-[var(--color-border)] rounded-[var(--radius-modal)] flex items-end px-[33.2px] pt-[32.48px] pb-[33.19px] w-full">
+          <div className="border border-[var(--color-border)] rounded-[var(--radius-modal)] flex flex-col sm:flex-row sm:items-end px-[33.2px] pt-[32.48px] pb-[33.19px] w-full">
             <div className="flex-1">
               <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[31.57px] m-0">
                 騒がしいインターネットの片隅に
@@ -84,13 +84,12 @@ export default function LandingPage() {
                 </span>
               </button>
             </div>
-            <div className="w-[144.9px] h-[188.99px] shrink-0 ml-4">
+            <div className="shrink-0 self-end mt-6 sm:mt-0 sm:ml-4">
               <Image
                 src="/images/sl-find-a-way.svg"
                 alt=""
                 width={145}
                 height={189}
-                className="w-full h-full"
               />
             </div>
           </div>

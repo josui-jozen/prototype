@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--color-bg-secondary)] w-full px-[273px] py-[56.35px]">
-      <div className="flex gap-[44.27px] items-start max-w-[894px] px-[40.25px] mx-auto">
+    <footer className="bg-[var(--color-bg-secondary)] w-full py-[56.35px]">
+      <div className="flex flex-col gap-11 sm:flex-row sm:gap-[44.27px] items-start w-full max-w-5xl px-6 mx-auto">
         {/* Left: Logo + Description + Login */}
         <div className="flex-1 min-w-0">
           <Link href="/" className="flex items-center gap-[8.05px] no-underline">

@@ -3,5 +3,9 @@ export default function PublicLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <div className="min-h-screen flex flex-col">
+      {children}
+    </div>
+  );
 }
