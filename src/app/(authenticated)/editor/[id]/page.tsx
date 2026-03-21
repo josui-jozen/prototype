@@ -8,6 +8,10 @@ import { EditorHeader } from "@/app/_components/editor/EditorHeader";
 import { EditorToolbar } from "@/app/_components/editor/EditorToolbar";
 import { GuideModal } from "@/app/_components/editor/GuideModal";
 
+import { TagModal } from "@/app/_components/editor/TagModal";
+import { MoodModal } from "@/app/_components/editor/MoodModal";
+import { VersionHistoryModal } from "@/app/_components/editor/VersionHistoryModal";
+
 type SaveStatus = "saved" | "saving" | "unsaved";
 
 export default function EditorPage({
@@ -43,6 +47,12 @@ export default function EditorPage({
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
   const [charCount, setCharCount] = useState(0);
   const [guideOpen, setGuideOpen] = useState(false);
+
+  const [tagOpen, setTagOpen] = useState(false);
+  const [moodOpen, setMoodOpen] = useState(false);
+  const [versionHistoryOpen, setVersionHistoryOpen] = useState(false);
+  const [tags, setTags] = useState<string[]>([]);
+  const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [initialized, setInitialized] = useState(false);
 
   // 記事データが読み込まれたら初期値を設定
@@ -85,7 +95,7 @@ export default function EditorPage({
         saveStatus={saveStatus}
         visibility={visibility}
         onVisibilityChange={setVisibility}
-        onTagClick={() => {}}
+        onTagClick={() => setTagOpen(true)}
       />
 
       <main className="flex-1 overflow-y-auto">
@@ -114,11 +124,27 @@ export default function EditorPage({
         charCount={charCount}
         onGuideClick={() => setGuideOpen(true)}
         onImageInsert={handleImageInsert}
-        onVersionHistoryClick={() => {}}
-        onMoodClick={() => {}}
+        onVersionHistoryClick={() => setVersionHistoryOpen(true)}
+        onMoodClick={() => setMoodOpen(true)}
       />
 
       <GuideModal isOpen={guideOpen} onClose={() => setGuideOpen(false)} />
+      <TagModal
+        isOpen={tagOpen}
+        onClose={() => setTagOpen(false)}
+        tags={tags}
+        onTagsChange={setTags}
+      />
+      <MoodModal
+        isOpen={moodOpen}
+        onClose={() => setMoodOpen(false)}
+        selectedMood={selectedMood}
+        onMoodChange={setSelectedMood}
+      />
+      <VersionHistoryModal
+        isOpen={versionHistoryOpen}
+        onClose={() => setVersionHistoryOpen(false)}
+      />
     </div>
   );
 }

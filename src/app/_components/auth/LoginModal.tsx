@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Modal } from "@/app/_components/ui/Modal";
 
@@ -9,6 +10,12 @@ type LoginModalProps = {
 };
 
 export function LoginModal({ isOpen, onClose }: LoginModalProps) {
+  const router = useRouter();
+
+  function handleLogin() {
+    router.push("/home");
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="bg-white flex flex-col items-start overflow-hidden rounded-[var(--radius-modal)] shadow-[var(--shadow-modal)] w-[400px] max-w-[90vw] px-[32.2px] pt-[48.29px] pb-[48.3px]">
@@ -39,7 +46,10 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
           </div>
 
           {/* Google Login Button */}
-          <button className="bg-white border border-[var(--color-border-button)] rounded-full flex gap-[7.64px] items-center justify-center w-full py-[15.087px] px-[48.3px] cursor-pointer">
+          <button
+            onClick={handleLogin}
+            className="bg-white border border-[var(--color-border-button)] rounded-full flex gap-[7.64px] items-center justify-center w-full py-[15.087px] px-[48.3px] cursor-pointer hover:bg-[var(--color-bg-secondary)] transition-colors"
+          >
             <Image
               src="/images/google.svg"
               alt=""

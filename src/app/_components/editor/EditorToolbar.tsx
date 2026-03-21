@@ -9,6 +9,7 @@ type EditorToolbarProps = {
   onImageInsert: (file: File) => void;
   onVersionHistoryClick: () => void;
   onMoodClick: () => void;
+  showGuideHint?: boolean;
 };
 
 export function EditorToolbar({
@@ -17,6 +18,7 @@ export function EditorToolbar({
   onImageInsert,
   onVersionHistoryClick,
   onMoodClick,
+  showGuideHint,
 }: EditorToolbarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -36,9 +38,22 @@ export function EditorToolbar({
     <div className="flex items-center justify-between px-[24px] py-[24px] shrink-0 border-t border-[var(--color-border)]">
       {/* 左: ガイド / 画像 / バージョン */}
       <div className="flex items-center gap-[2px]">
-        <ToolbarButton onClick={onGuideClick} label="ガイド">
-          <HelpCircle size={20} />
-        </ToolbarButton>
+        <div className="relative">
+          {showGuideHint && (
+            <div className="absolute bottom-full left-0 mb-[4px]">
+              <p className="text-[13.5px] text-[#8d9298] tracking-[0.483px] leading-[20px] whitespace-nowrap opacity-60 m-0">
+                書き方はここから
+              </p>
+              {/* 手書き風矢印 */}
+              <svg width="10" height="33" viewBox="0 0 10 33" fill="none" className="ml-[5px] opacity-40">
+                <path d="M5 0C5 0 4 20 5 28M5 28C3 26 1 25 1 25M5 28C7 26 9 25 9 25" stroke="#8d9298" strokeWidth="1.2" strokeLinecap="round" />
+              </svg>
+            </div>
+          )}
+          <ToolbarButton onClick={onGuideClick} label="ガイド">
+            <HelpCircle size={20} />
+          </ToolbarButton>
+        </div>
         <ToolbarButton onClick={handleImageClick} label="画像を挿入">
           <Image size={22} />
         </ToolbarButton>

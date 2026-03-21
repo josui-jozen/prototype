@@ -9,6 +9,7 @@ import { useAuth } from '@/app/_hooks/useAuth'
 import { Article } from '@/usecase/article/article.types'
 import { articleMockRepo } from '@/infrastructure/repository/article/article.mock'
 import { VisibilityBadge } from '@/app/_components/ui/VisibilityBadge'
+import { FloatingMenuButton } from '@/app/_components/layout/FloatingMenuButton'
 
 function formatDate(date: Date) {
   return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
@@ -17,6 +18,7 @@ function formatDate(date: Date) {
 export default function HomePage() {
   const { user } = useAuth()
   const [articles, setArticles] = useState<Article[]>([])
+
 
   useEffect(() => {
     articleMockRepo.findAll().then(setArticles)
@@ -102,10 +104,7 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* Floating Menu Button */}
-      <button className="fixed bottom-[56px] left-[64px] size-[58px] bg-white rounded-full shadow-[0px_0px_0px_1px_rgba(0,0,0,0.09),0px_3px_8px_-3px_rgba(0,0,0,0.08)] flex items-center justify-center z-10">
-        <Image src="/images/icons/menu-dots.svg" alt="メニュー" width={28} height={28} />
-      </button>
+      <FloatingMenuButton />
 
       <Footer />
     </>

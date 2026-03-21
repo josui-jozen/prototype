@@ -5,6 +5,7 @@ import { AuthorHomeLink } from '@/app/_components/article/AuthorHomeLink'
 import { articleMockRepo } from '@/infrastructure/repository/article/article.mock'
 import { notFound } from 'next/navigation'
 import { VisibilityDropdown } from '@/app/_components/article/VisibilityDropdown'
+import { FloatingMenuButton } from '@/app/_components/layout/FloatingMenuButton'
 
 function formatDate(date: Date) {
   return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
@@ -138,23 +139,7 @@ export default async function ArticlePreviewPage({
         </div>
       </main>
 
-      {/* Floating Menu Button */}
-      <button className="fixed bottom-[56px] left-[64px] size-[58px] bg-white rounded-full shadow-[0px_0px_0px_1px_rgba(0,0,0,0.09),0px_3px_8px_-3px_rgba(0,0,0,0.08)] flex items-center justify-center z-10">
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="1" />
-          <circle cx="12" cy="5" r="1" />
-          <circle cx="12" cy="19" r="1" />
-        </svg>
-      </button>
+      <FloatingMenuButton />
 
       <Footer />
     </>
