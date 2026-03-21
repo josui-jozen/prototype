@@ -3,7 +3,7 @@ import { AuthProvider } from "@/app/_hooks/useAuth";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "しずかなインターネット",
+  title: "コピーサイト",
   description: "日記やエッセイを書くのにちょうどいい、文章書き散らしサービス",
 };
 

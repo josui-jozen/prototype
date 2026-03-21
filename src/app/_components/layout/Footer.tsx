@@ -63,12 +63,12 @@ export function Footer() {
               <Link href="/" className="flex items-center gap-[8.05px] no-underline">
                 <Image
                   src="/images/logo-small.svg"
-                  alt="しずかなインターネット"
+                  alt="コピーサイト"
                   width={28}
                   height={35}
                 />
                 <span className="text-[16.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[27.37px]">
-                  しずかなインターネット
+                  コピーサイト
                 </span>
               </Link>
               <div className="mt-[13.49px]">

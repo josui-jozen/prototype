@@ -30,7 +30,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
             />
             <div className="pt-[10.063px]">
               <p className="text-[20.3px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[34.49px] m-0">
-                しずかなインターネット
+                コピーサイト
               </p>
             </div>
           </div>

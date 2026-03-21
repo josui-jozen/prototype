@@ -36,7 +36,7 @@ export default function AboutPage() {
         <Link href="/" className="flex items-center gap-[10.06px] no-underline">
           <Image src="/images/logo.svg" alt="" width={40} height={51} />
           <span className="text-[16.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[22.54px]">
-            しずかなインターネット
+            コピーサイト
           </span>
         </Link>
         <button
@@ -64,7 +64,7 @@ export default function AboutPage() {
         {/* Description */}
         <div className="mt-[24.1px]">
           <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[35.84px] m-0">
-            しずかなインターネットは、日記やエッセイを書くのにちょうどいい文章投稿サービスです。
+            コピーサイトは、日記やエッセイを書くのにちょうどいい文章投稿サービスです。
           </p>
           <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[35.84px] m-0 mt-[15px]">
             ここは、Twitterやnoteのような賑やかな広場ではありません。ここは、あなたのパーソナルな部屋のようなものです。部屋に文章を置き、通りかかった人が部屋に入って自由に読むことができる… そんなコンセプトで作られました。
@@ -132,7 +132,7 @@ export default function AboutPage() {
         </h2>
 
         <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[35.84px] m-0 mt-[24px]">
-          しずかなインターネットで気になる人を見つけた場合、RSS もしくは「ひかえめなニュースレター」で購読することができます。
+          コピーサイトで気になる人を見つけた場合、RSS もしくは「ひかえめなニュースレター」で購読することができます。
         </p>
         <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[35.84px] m-0 mt-[15px]">
           ひかえめなニュースレターは、購読している誰かが記事を公開したときに、それらの記事の情報をまとめてメールでお伝えする機能です。このメールは1週間で1度だけしか送られません。その週に誰も更新していなければ、メールは送られません。
@@ -174,7 +174,7 @@ export default function AboutPage() {
         </div>
 
         <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[35.84px] m-0 mt-[24px]">
-          しずかなインターネットには「いいね」ボタンはありません。筆者にリアクションする唯一の方法は、記事ページから「感想レター」を送ることです。
+          コピーサイトには「いいね」ボタンはありません。筆者にリアクションする唯一の方法は、記事ページから「感想レター」を送ることです。
         </p>
         <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[35.84px] m-0 mt-[15px]">
           感想レターは、決められたメッセージの中から選ぶ形であればログインせずに送信できます。ログインすると、自由にメッセージを入力することもできます。
@@ -205,7 +205,7 @@ export default function AboutPage() {
         </div>
 
         <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[35.84px] m-0 mt-[24px]">
-          しずかなインターネットでは「スポンサー」になることで、以下のような特典を利用できるようになります。
+          コピーサイトでは「スポンサー」になることで、以下のような特典を利用できるようになります。
         </p>
 
         <div className="bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-[19.32px] p-[21.125px] mt-[24px]">
@@ -219,7 +219,7 @@ export default function AboutPage() {
         </div>
 
         <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[35.84px] m-0 mt-[24px]">
-          詳しくは、<span className="text-[var(--color-text-secondary)] underline decoration-dotted decoration-[var(--color-link-underline)]">しずかなインターネットのスポンサー</span>をご確認ください。
+          詳しくは、<span className="text-[var(--color-text-secondary)] underline decoration-dotted decoration-[var(--color-link-underline)]">コピーサイトのスポンサー</span>をご確認ください。
         </p>
 
         {/* CTA */}

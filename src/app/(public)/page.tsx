@@ -18,14 +18,14 @@ export default function LandingPage() {
           <div className="flex flex-col items-center w-full">
             <Image
               src="/images/logo.svg"
-              alt="しずかなインターネット"
+              alt="コピーサイト"
               width={80}
               height={101}
               priority
             />
             <div className="pt-[20.125px]">
               <h1 className="text-[20.3px] text-[var(--color-text-primary)] tracking-[0.483px] leading-[34.49px] font-normal m-0">
-                しずかなインターネット
+                コピーサイト
               </h1>
             </div>
             <div className="pt-[24.15px]">
@@ -43,7 +43,7 @@ export default function LandingPage() {
           {/* Description */}
           <div className="w-full">
             <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.427px] leading-[35.84px] m-0">
-              しずかなインターネットは、日記やエッセイを書くのにちょうどいい、文章書き散らしサービスです。
+              コピーサイトは、日記やエッセイを書くのにちょうどいい、文章書き散らしサービスです。
             </p>
             <p className="text-[17.1px] text-[var(--color-text-primary)] tracking-[0.427px] leading-[35.84px] m-0 mt-[27.16px]">
               ここでは有益な情報を書くことはあまり求められていません。「たくさんの人に読まれなくていい」「自分のために、ひょっとすると、どこかの誰かのために」そんな気楽さで文章を書くための場所です。
