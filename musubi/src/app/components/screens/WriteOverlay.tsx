@@ -1,6 +1,8 @@
-import { useState, useRef, useEffect } from "react";
-import { ArrowLeft, Send } from "lucide-react";
+import { useState, useRef } from "react";
+import { ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import Stand from "@/imports/通常";
+import Send from "@/imports/送信";
 
 const PROMPTS = [
   "最近、ふとした瞬間に思い出すこと",
@@ -10,29 +12,12 @@ const PROMPTS = [
   "今日、一番心が動いた瞬間",
 ];
 
-const MUSUBI_SVG = (
-  <svg viewBox="0 0 100 100" className="w-12 h-12 drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
-    {/* Body */}
-    <path d="M 15 55 C 15 25, 85 25, 85 55 C 85 85, 15 85, 15 55 Z" fill="var(--app-musubi)" stroke="var(--app-text)" strokeWidth="2.5" />
-    {/* Ahoge */}
-    <path d="M 50 25 Q 55 10, 65 15" fill="none" stroke="var(--app-text)" strokeWidth="2" strokeLinecap="round" />
-    {/* Eyes */}
-    <path d="M 33 50 C 37 47, 43 50, 41 55" fill="none" stroke="var(--app-text)" strokeWidth="2.5" strokeLinecap="round" />
-    <path d="M 67 50 C 63 47, 57 50, 59 55" fill="none" stroke="var(--app-text)" strokeWidth="2.5" strokeLinecap="round" />
-    {/* Cheeks */}
-    <ellipse cx="28" cy="58" rx="5" ry="3" fill="var(--app-accent)" opacity="0.6" />
-    <ellipse cx="72" cy="58" rx="5" ry="3" fill="var(--app-accent)" opacity="0.6" />
-    {/* Mouth */}
-    <path d="M 46 62 Q 50 65, 54 62" fill="none" stroke="var(--app-text)" strokeWidth="2" strokeLinecap="round" />
-  </svg>
-);
-
 export default function WriteOverlay({ onClose }: { onClose: () => void }) {
   const [text, setText] = useState("");
   const [promptIndex, setPromptIndex] = useState(-1);
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleMusubiClick = () => {
@@ -43,7 +28,7 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
   const handleSubmit = () => {
     if (text.trim() === "") return;
     setIsSaving(true);
-    
+
     // Simulate save animation
     setTimeout(() => {
       setIsSaved(true);
@@ -88,9 +73,9 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
               whileTap={{ scale: 0.9, rotate: [0, -10, 10, -10, 0] }}
               transition={{ duration: 0.4 }}
               onClick={handleMusubiClick}
-              className="mb-2"
+              className="mb-2 w-12 h-12"
             >
-              {MUSUBI_SVG}
+              <Stand />
             </motion.button>
             {promptIndex === -1 ? (
               <p className="text-app-sub text-xs leading-relaxed text-right">
@@ -142,25 +127,8 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
               transition={isSaved ? { duration: 0.6, times: [0, 0.2, 1], ease: "anticipate" } : { repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
               className="flex flex-col items-center gap-6"
             >
-              {/* Carry Musubi */}
-              <div className="relative">
-                <svg viewBox="0 0 100 100" className="w-32 h-32 drop-shadow-lg" xmlns="http://www.w3.org/2000/svg">
-                  {/* Letter on head */}
-                  <rect x="25" y="10" width="50" height="30" fill="white" stroke="var(--app-text)" strokeWidth="2.5" transform="rotate(-10 50 25)" />
-                  <path d="M 25 10 L 50 25 L 75 10" fill="none" stroke="var(--app-text)" strokeWidth="2.5" transform="rotate(-10 50 25)" />
-                  <circle cx="50" cy="22" r="4" fill="var(--app-accent)" transform="rotate(-10 50 25)" />
-                  
-                  {/* Body */}
-                  <path d="M 15 65 C 15 35, 85 35, 85 65 C 85 95, 15 95, 15 65 Z" fill="var(--app-musubi)" stroke="var(--app-text)" strokeWidth="3" />
-                  {/* Eyes */}
-                  <path d="M 33 60 C 37 57, 43 60, 41 65" fill="none" stroke="var(--app-text)" strokeWidth="3" strokeLinecap="round" />
-                  <path d="M 67 60 C 63 57, 57 60, 59 65" fill="none" stroke="var(--app-text)" strokeWidth="3" strokeLinecap="round" />
-                  {/* Cheeks */}
-                  <ellipse cx="28" cy="68" rx="6" ry="4" fill="var(--app-accent)" opacity="0.6" />
-                  <ellipse cx="72" cy="68" rx="6" ry="4" fill="var(--app-accent)" opacity="0.6" />
-                  {/* Mouth - determined face */}
-                  <path d="M 45 72 Q 50 70, 55 72" fill="none" stroke="var(--app-text)" strokeWidth="2" strokeLinecap="round" />
-                </svg>
+              <div className="w-32 h-32 drop-shadow-lg">
+                <Send />
               </div>
               <p className="text-white text-lg tracking-widest font-medium">
                 {isSaved ? "保存完了" : "保存中..."}

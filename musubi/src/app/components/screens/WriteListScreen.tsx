@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Plus, X, Pencil, Camera } from "lucide-react";
+import { Plus, Pencil, Camera } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import WriteOverlay from "./WriteOverlay";
+import { useBlockWheel } from "../useBlockWheel";
 
 const MOCK_DIARIES = [
   {
@@ -24,24 +25,27 @@ const MOCK_DIARIES = [
 export default function WriteListScreen() {
   const [isFabOpen, setIsFabOpen] = useState(false);
   const [isWriting, setIsWriting] = useState(false);
+  const headerRef = useBlockWheel<HTMLElement>();
 
   return (
-    <div className="min-h-full flex flex-col pt-12 px-6 pb-24 relative">
-      <header className="mb-8">
+    <div className="flex flex-col h-full relative">
+      <header ref={headerRef} className="shrink-0 pt-12 px-6 pb-4 bg-app-bg z-10">
         <h1 className="text-3xl font-bold text-app-text mb-2 tracking-widest">日記</h1>
         <p className="text-app-sub text-sm tracking-widest">あなたの綴った言葉たち</p>
       </header>
 
-      <div className="flex flex-col gap-4">
-        {MOCK_DIARIES.map((diary) => (
-          <div
-            key={diary.id}
-            className="bg-white rounded-2xl p-6 shadow-sm border border-app-bg leading-relaxed"
-          >
-            <p className="text-app-sub text-xs mb-3 font-medium">{diary.date}</p>
-            <p className="text-app-text text-[15px]">{diary.text}</p>
-          </div>
-        ))}
+      <div className="flex-1 overflow-y-auto px-6 pb-6">
+        <div className="flex flex-col gap-4">
+          {MOCK_DIARIES.map((diary) => (
+            <div
+              key={diary.id}
+              className="bg-white rounded-2xl p-6 shadow-sm border border-app-bg leading-relaxed"
+            >
+              <p className="text-app-sub text-xs mb-3 font-medium">{diary.date}</p>
+              <p className="text-app-text text-[15px]">{diary.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* FAB Overlay Background */}
@@ -93,7 +97,7 @@ export default function WriteListScreen() {
       {/* Main FAB */}
       <button
         onClick={() => setIsFabOpen(!isFabOpen)}
-        className={`fixed bottom-24 right-6 w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-colors z-50 duration-300 ${
+        className={`fixed bottom-28 right-6 w-16 h-16 rounded-full shadow-lg flex items-center justify-center transition-colors z-50 duration-300 ${
           isFabOpen ? "bg-app-sub" : "bg-app-accent"
         }`}
       >

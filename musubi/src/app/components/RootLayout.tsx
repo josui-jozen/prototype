@@ -1,14 +1,17 @@
 import { Outlet, NavLink } from "react-router";
 import { PenLine, Inbox, Mail, Settings } from "lucide-react";
+import { useBlockWheel } from "./useBlockWheel";
 
 export default function RootLayout() {
+  const navRef = useBlockWheel<HTMLElement>();
+
   return (
     <div className="flex flex-col h-[100dvh] w-full max-w-md mx-auto bg-app-bg text-app-text relative overflow-hidden shadow-2xl" style={{ fontFamily: '"Zen Maru Gothic", sans-serif' }}>
-      <div className="flex-1 overflow-y-auto overflow-x-hidden relative scroll-smooth h-full pb-[80px]">
+      <div className="flex-1 overflow-hidden relative">
         <Outlet />
       </div>
 
-      <nav className="absolute bottom-0 left-0 right-0 bg-white border-t border-app-sub/20 flex items-center justify-around h-[80px] pb-4 pt-2 px-2 z-40">
+      <nav ref={navRef} className="shrink-0 bg-white border-t border-app-sub/20 flex items-center justify-around h-[96px] pb-6 pt-2 px-2 z-40">
         <NavItem to="/" icon={<PenLine className="hand-drawn-icon" size={24} />} label="書く" />
         <NavItem to="/received" icon={<Inbox className="hand-drawn-icon" size={24} />} label="届いた" />
         <NavItem to="/sent" icon={<Mail className="hand-drawn-icon" size={24} />} label="便箋" />
