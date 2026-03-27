@@ -73,7 +73,7 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
               whileTap={{ scale: 0.9, rotate: [0, -10, 10, -10, 0] }}
               transition={{ duration: 0.4 }}
               onClick={handleMusubiClick}
-              className="mb-2 w-12 h-12"
+              className="mb-2 w-24 h-24"
             >
               <Stand />
             </motion.button>

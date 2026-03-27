@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Plus, Pencil, Camera } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import WriteOverlay from "./WriteOverlay";
-import { useBlockWheel } from "../useBlockWheel";
 
 const MOCK_DIARIES = [
   {
@@ -25,16 +24,15 @@ const MOCK_DIARIES = [
 export default function WriteListScreen() {
   const [isFabOpen, setIsFabOpen] = useState(false);
   const [isWriting, setIsWriting] = useState(false);
-  const headerRef = useBlockWheel<HTMLElement>();
 
   return (
-    <div className="flex flex-col h-full relative">
-      <header ref={headerRef} className="shrink-0 pt-12 px-6 pb-4 bg-app-bg z-10">
+    <div className="min-h-[100dvh] relative">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30">
         <h1 className="text-3xl font-bold text-app-text mb-2 tracking-widest">日記</h1>
         <p className="text-app-sub text-sm tracking-widest">あなたの綴った言葉たち</p>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-6 pb-6">
+      <div className="pt-[120px] pb-[112px] px-6">
         <div className="flex flex-col gap-4">
           {MOCK_DIARIES.map((diary) => (
             <div

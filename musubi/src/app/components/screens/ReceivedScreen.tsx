@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Rest from "@/imports/やすみ";
 import Reply from "@/imports/返信";
-import { useBlockWheel } from "../useBlockWheel";
 
 const MOCK_RECEIVED = [
   {
@@ -29,7 +28,6 @@ export default function ReceivedScreen() {
   const [showAnimation, setShowAnimation] = useState(true);
   const [animationPhase, setAnimationPhase] = useState(0);
   const [diaries, setDiaries] = useState(MOCK_RECEIVED);
-  const headerRef = useBlockWheel<HTMLElement>();
 
   useEffect(() => {
     const t1 = setTimeout(() => setAnimationPhase(1), 1500);
@@ -62,8 +60,8 @@ export default function ReceivedScreen() {
   };
 
   return (
-    <div className="flex flex-col h-full relative">
-      <header ref={headerRef} className="shrink-0 pt-12 px-6 pb-4 bg-app-bg z-10 flex justify-between items-start">
+    <div className="min-h-[100dvh] relative">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30 flex justify-between items-start">
         <div>
           <h1 className="text-3xl font-bold text-app-text mb-2 tracking-widest">届いた日記</h1>
           <p className="text-app-sub text-sm tracking-widest">ムスビが持ってきてくれました</p>
@@ -73,7 +71,7 @@ export default function ReceivedScreen() {
         </div>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-6 pb-6">
+      <div className="pt-[120px] pb-[112px] px-6">
         <div className="flex flex-col gap-8">
           {diaries.map((diary, index) => {
             const showDate = index === 0 || diaries[index-1].date !== diary.date;
@@ -125,7 +123,7 @@ export default function ReceivedScreen() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-30 bg-black/50 flex flex-col items-center justify-start pt-[25vh] pointer-events-auto max-w-md mx-auto"
+            className="fixed inset-0 z-50 bg-black/50 flex flex-col items-center justify-start pt-[25vh] pointer-events-auto max-w-md mx-auto"
           >
             <motion.div
               initial={{ x: 100, opacity: 0 }}
@@ -145,7 +143,7 @@ export default function ReceivedScreen() {
                 <Reply />
               </div>
               <p className="text-white text-lg tracking-widest font-medium">
-                {animationPhase === 0 ? "受け取り中..." : "結びが誰かの日記を持ってきました！"}
+                {animationPhase === 0 ? "受け取り中..." : "ムスビが誰かの日記を持ってきました！"}
               </p>
             </motion.div>
           </motion.div>

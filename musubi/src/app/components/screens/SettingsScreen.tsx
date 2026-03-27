@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import Rest from "@/imports/やすみ";
 import Send from "@/imports/送信";
 import Reply from "@/imports/返信";
-import { useBlockWheel } from "../useBlockWheel";
 
 const RANGE_OPTIONS = [
   {
@@ -30,15 +29,14 @@ export default function SettingsScreen() {
   const [range, setRange] = useState("neighbor");
   const [notifyDiary, setNotifyDiary] = useState(true);
   const [notifyStamp, setNotifyStamp] = useState(true);
-  const headerRef = useBlockWheel<HTMLElement>();
 
   return (
-    <div className="flex flex-col h-full relative">
-      <header ref={headerRef} className="shrink-0 pt-12 px-6 pb-4 bg-app-bg z-10">
+    <div className="min-h-[100dvh] relative">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30">
         <h1 className="text-3xl font-bold text-app-text tracking-widest">設定</h1>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-6 pb-6">
+      <div className="pt-[100px] pb-[112px] px-6">
         <section className="mb-10">
           <p className="text-app-text text-sm mb-4 font-medium">
             ムスビがどこまで日記を探しに行くか決められます
@@ -54,14 +52,14 @@ export default function SettingsScreen() {
                     : "border-transparent shadow-sm"
                 }`}
               >
-                <div className="w-10 h-10 flex items-center justify-center shrink-0">
-                  <opt.Icon />
-                </div>
                 <div className="flex flex-col items-start">
                   <span className="text-app-text font-medium text-[15px] mb-1">{opt.title}</span>
                   <span className="text-app-sub text-xs">{opt.desc}</span>
                 </div>
-                <div className="ml-auto">
+                <div className="ml-auto flex items-center gap-3">
+                  <div className="w-15 h-15 flex items-center justify-center shrink-0">
+                    <opt.Icon />
+                  </div>
                   <div
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
                       range === opt.id ? "border-app-accent" : "border-app-sub"

@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import Send from "@/imports/送信";
 import Reply from "@/imports/返信";
 import Rest from "@/imports/やすみ";
-import { useBlockWheel } from "../useBlockWheel";
 
 const MOCK_SENT = [
   {
@@ -36,18 +35,16 @@ const MOCK_SENT = [
 ];
 
 export default function SentScreen() {
-  const headerRef = useBlockWheel<HTMLElement>();
-
   return (
-    <div className="flex flex-col h-full relative bg-app-bg">
-      <header ref={headerRef} className="shrink-0 pt-12 px-6 pb-4 bg-app-bg z-10">
+    <div className="min-h-[100dvh] relative bg-app-bg">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30">
         <h1 className="text-3xl font-bold text-app-text mb-2 tracking-widest">便箋</h1>
         <p className="text-app-sub text-sm tracking-widest">あなたの日記のゆくえ</p>
       </header>
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="pt-[120px] pb-[112px]">
         {/* Street Animation Scene */}
-        <div className="h-24 w-full relative overflow-hidden mb-6 bg-[#F5F0E8] border-b border-[#E8DFD1]">
+        <div className="h-12 w-full relative overflow-hidden mb-6 bg-app-bg border-b border-app-sub/20">
           <div className="absolute right-4 bottom-2 z-0 w-12 h-12">
             <Rest />
           </div>
