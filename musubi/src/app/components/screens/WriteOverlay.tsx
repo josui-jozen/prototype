@@ -103,7 +103,7 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="今日あったこと、感じたこと..."
-          className="w-full flex-1 bg-transparent border-none outline-none resize-none text-app-text placeholder:text-app-sub/60 leading-relaxed text-[15px]"
+          className="w-full flex-1 bg-transparent border-none outline-none resize-none text-app-text placeholder:text-app-sub/60 leading-relaxed text-base"
         />
 
         {/* Character Count */}
