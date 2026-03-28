@@ -8,7 +8,7 @@ export default function RootLayout() {
         <Outlet />
       </div>
 
-      <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-app-sub/20 flex items-center justify-around h-[96px] pb-6 pt-2 px-2 z-40">
+      <nav className="fixed bottom-4 left-4 right-4 max-w-md mx-auto bg-white rounded-full shadow-lg flex items-center justify-around h-20 px-2 z-[70]">
         <NavItem to="/" icon={<PenLine className="hand-drawn-icon" size={24} />} label="書く" />
         <NavItem to="/received" icon={<Inbox className="hand-drawn-icon" size={24} />} label="届いた" />
         <NavItem to="/sent" icon={<Mail className="hand-drawn-icon" size={24} />} label="便箋" />

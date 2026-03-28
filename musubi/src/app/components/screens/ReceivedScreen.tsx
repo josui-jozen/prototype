@@ -123,7 +123,7 @@ export default function ReceivedScreen() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 bottom-24 z-50 bg-black/50 flex flex-col items-center justify-start pt-[25vh] pointer-events-auto max-w-md mx-auto overflow-hidden"
+            className="fixed inset-0 z-50 bg-black/50 flex flex-col items-center justify-start pt-[25vh] pointer-events-auto max-w-md mx-auto"
           >
             <motion.div
               initial={{ x: 100, opacity: 0 }}

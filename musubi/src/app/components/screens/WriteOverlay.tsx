@@ -44,7 +44,7 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
       animate={{ y: 0 }}
       exit={{ y: "100%" }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed inset-0 z-50 bg-app-bg flex flex-col max-w-md mx-auto"
+      className="fixed inset-0 z-[80] bg-app-bg flex flex-col max-w-md mx-auto"
       style={{ fontFamily: '"Zen Maru Gothic", sans-serif' }}
     >
       {/* Header */}
@@ -116,7 +116,7 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-black/50 flex flex-col items-center justify-start pt-[25vh] pointer-events-auto max-w-md mx-auto"
+            className="fixed inset-0 z-[90] bg-black/50 flex flex-col items-center justify-start pt-[25vh] pointer-events-auto max-w-md mx-auto"
           >
             <motion.div
               initial={{ x: 0 }}
