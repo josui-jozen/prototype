@@ -37,15 +37,15 @@ const MOCK_SENT = [
 export default function SentScreen() {
   return (
     <div className="min-h-[100dvh] relative bg-app-bg">
-      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30 after:content-[''] after:absolute after:left-0 after:right-0 after:top-full after:h-4 after:bg-gradient-to-b after:from-app-bg after:to-transparent after:pointer-events-none">
         <h1 className="text-3xl font-bold text-app-text mb-2 tracking-widest">便箋</h1>
         <p className="text-app-sub text-sm tracking-widest">あなたの日記のゆくえ</p>
       </header>
 
-      <div className="pt-[120px] pb-[112px]">
+      <div>
         {/* Street Animation Scene */}
-        <div className="h-12 w-full relative overflow-hidden mb-6 bg-app-bg border-b border-app-sub/20">
-          <div className="absolute right-4 bottom-2 z-0 w-12 h-12">
+        <div className="h-16 w-full relative overflow-hidden mb-6 bg-app-bg border-b border-app-sub/20">
+          <div className="absolute right-4 bottom-2 z-0 w-14 h-14">
             <Rest />
           </div>
           <motion.div
@@ -54,7 +54,7 @@ export default function SentScreen() {
             className="absolute bottom-2 z-10"
           >
             <motion.div animate={{ y: [-2, 2, -2] }} transition={{ repeat: Infinity, duration: 0.5 }}>
-              <div className="w-12 h-12">
+              <div className="w-14 h-14">
                 <Send />
               </div>
             </motion.div>
@@ -65,7 +65,7 @@ export default function SentScreen() {
             className="absolute bottom-4 z-10 scale-75 opacity-80"
           >
             <motion.div animate={{ y: [-2, 2, -2] }} transition={{ repeat: Infinity, duration: 0.6 }}>
-              <div className="w-12 h-12">
+              <div className="w-14 h-14">
                 <Send />
               </div>
             </motion.div>
@@ -75,7 +75,7 @@ export default function SentScreen() {
             transition={{ repeat: Infinity, duration: 10, ease: "linear", delay: 2 }}
             className="absolute bottom-1 z-20"
           >
-            <div className="w-16 h-12">
+            <div className="w-20 h-14">
               <Reply />
             </div>
           </motion.div>

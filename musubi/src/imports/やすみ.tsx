@@ -1,9 +1,9 @@
-import { useRef, useEffect, useState } from "react";
 import svgPaths from "./svg-kx2jqb1vb8";
+import CharacterBase from "./CharacterBase";
 
 function CartStatic() {
   return (
-    <div className="absolute h-[278px] left-[244px] top-[522px] w-[314px]">
+    <div className="absolute h-[278px] left-[118px] top-[-8px] w-[314px]">
       <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 314 278">
         <g clipPath="url(#clip0_rest_cart)">
           <path d={svgPaths.p3cd70500} fill="var(--fill-0, #D9D9D9)" stroke="var(--stroke-0, black)" />
@@ -47,7 +47,7 @@ function CartStatic() {
 
 function Character() {
   return (
-    <div className="absolute h-[243px] left-[141px] top-[553px] w-[249px] anim-char-rest">
+    <div className="absolute h-[243px] left-[15px] top-[23px] w-[249px] anim-char-rest">
       <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 249 243">
         <g>
           <path className="anim-inner-ahoge" style={{ transformOrigin: "90px 40px" }} d={svgPaths.p3c426e00} fill="var(--fill-0, #F3F1EC)" stroke="var(--stroke-0, #4E3A3A)" strokeWidth="3" />
@@ -70,30 +70,10 @@ function Character() {
 }
 
 export default function Component() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const update = () => {
-      setScale(Math.min(el.clientWidth / 700, el.clientHeight / 800));
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
   return (
-    <div ref={containerRef} className="relative size-full overflow-hidden" data-name="やすみ">
-      <div
-        className="w-[700px] h-[800px] origin-top-left relative"
-        style={{ transform: `scale(${scale})` }}
-      >
-        <CartStatic />
-        <Character />
-      </div>
-    </div>
+    <CharacterBase canvasWidth={432} canvasHeight={270} bodyWidth={249} name="やすみ">
+      <CartStatic />
+      <Character />
+    </CharacterBase>
   );
 }

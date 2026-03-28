@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from "react";
 import svgPaths from "./svg-jjmad2qr8l";
+import CharacterBase from "./CharacterBase";
 
 function Letter1() {
   return (
@@ -39,7 +39,7 @@ function Letter2() {
 
 function Cart() {
   return (
-    <div className="absolute h-[278px] left-[297px] top-[522.16px] w-[314px] anim-cart-vibrate">
+    <div className="absolute h-[278px] left-[201px] top-[337.16px] w-[314px] anim-cart-vibrate">
       <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 314 278">
         <g clipPath="url(#clip0_reply_cart)">
           <path className="anim-wheel-ccw" d={svgPaths.p3cd70500} fill="var(--fill-0, #D9D9D9)" stroke="var(--stroke-0, black)" />
@@ -81,9 +81,9 @@ function Cart() {
   );
 }
 
-function Character() {
+function CharacterBody() {
   return (
-    <div className="absolute h-[243px] left-[111px] top-[553.16px] w-[249px] anim-char-reply">
+    <div className="absolute h-[243px] left-[15px] top-[368.16px] w-[249px] anim-char-reply">
       <svg className="absolute block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 249 243">
         <g clipPath="url(#clip0_reply_char)">
           <path className="anim-inner-ahoge" style={{ transformOrigin: "90px 40px" }} d={svgPaths.p3c426e00} fill="var(--fill-0, #F3F1EC)" stroke="var(--stroke-0, #4E3A3A)" strokeWidth="3" />
@@ -118,42 +118,20 @@ function Character() {
 }
 
 export default function Component() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const update = () => {
-      setScale(Math.min(el.clientWidth / 700, el.clientHeight / 800));
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
   return (
-    <div ref={containerRef} className="relative size-full overflow-hidden" data-name="返信">
-      <div
-        ref={innerRef}
-        className="w-[700px] h-[800px] origin-top-left relative"
-        style={{ transform: `scale(${scale})` }}
-      >
-        <div className="absolute flex h-[469.236px] items-center justify-center left-[194.79px] top-[190px] w-[504.74px] anim-letter-vibrate" style={{ animationDelay: "0.05s" }}>
-          <div className="-rotate-30 flex-none">
-            <Letter1 />
-          </div>
+    <CharacterBase canvasWidth={620} canvasHeight={630} bodyWidth={249} name="返信">
+      <div className="absolute flex h-[469.236px] items-center justify-center left-[88.79px] top-[5px] w-[504.74px] anim-letter-vibrate" style={{ animationDelay: "0.05s" }}>
+        <div className="-rotate-30 flex-none">
+          <Letter1 />
         </div>
-        <div className="absolute flex h-[496.271px] items-center justify-center left-[185.02px] top-[190.14px] w-[508.227px] anim-letter-vibrate">
-          <div className="-rotate-40 flex-none">
-            <Letter2 />
-          </div>
-        </div>
-        <Cart />
-        <Character />
       </div>
-    </div>
+      <div className="absolute flex h-[496.271px] items-center justify-center left-[79.02px] top-[5.14px] w-[508.227px] anim-letter-vibrate">
+        <div className="-rotate-40 flex-none">
+          <Letter2 />
+        </div>
+      </div>
+      <Cart />
+      <CharacterBody />
+    </CharacterBase>
   );
 }

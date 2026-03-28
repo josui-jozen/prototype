@@ -61,17 +61,17 @@ export default function ReceivedScreen() {
 
   return (
     <div className="min-h-[100dvh] relative">
-      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30 flex justify-between items-start">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30 flex justify-between items-start after:content-[''] after:absolute after:left-0 after:right-0 after:top-full after:h-4 after:bg-gradient-to-b after:from-app-bg after:to-transparent after:pointer-events-none">
         <div>
           <h1 className="text-3xl font-bold text-app-text mb-2 tracking-widest">届いた日記</h1>
           <p className="text-app-sub text-sm tracking-widest">ムスビが持ってきてくれました</p>
         </div>
-        <div className="-mt-4 -mr-4 w-16 h-16">
+        <div className="-mt-4 -mr-4 w-32 h-20">
           <Rest />
         </div>
       </header>
 
-      <div className="pt-[120px] pb-[112px] px-6">
+      <div className="px-6">
         <div className="flex flex-col gap-8">
           {diaries.map((diary, index) => {
             const showDate = index === 0 || diaries[index-1].date !== diary.date;
@@ -123,7 +123,7 @@ export default function ReceivedScreen() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-50 bg-black/50 flex flex-col items-center justify-start pt-[25vh] pointer-events-auto max-w-md mx-auto"
+            className="fixed inset-0 bottom-24 z-50 bg-black/50 flex flex-col items-center justify-start pt-[25vh] pointer-events-auto max-w-md mx-auto overflow-hidden"
           >
             <motion.div
               initial={{ x: 100, opacity: 0 }}
@@ -139,7 +139,7 @@ export default function ReceivedScreen() {
               }}
               className="flex flex-col items-center gap-8"
             >
-              <div className="w-40 h-32 drop-shadow-lg">
+              <div className="w-64 h-64 drop-shadow-lg">
                 <Reply />
               </div>
               <p className="text-white text-lg tracking-widest font-medium">

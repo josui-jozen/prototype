@@ -4,6 +4,7 @@ import WriteListScreen from "./components/screens/WriteListScreen";
 import ReceivedScreen from "./components/screens/ReceivedScreen";
 import SentScreen from "./components/screens/SentScreen";
 import SettingsScreen from "./components/screens/SettingsScreen";
+import CharactersScreen from "./components/screens/CharactersScreen";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
       { path: "received", Component: ReceivedScreen },
       { path: "sent", Component: SentScreen },
       { path: "settings", Component: SettingsScreen },
+      { path: "characters", Component: CharactersScreen },
     ],
   },
 ]);

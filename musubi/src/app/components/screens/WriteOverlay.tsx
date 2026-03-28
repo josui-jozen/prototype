@@ -69,31 +69,28 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
         {/* Musubi Prompt Area */}
         <div className="flex justify-end mb-4 relative">
           <div className="flex flex-col items-end">
-            <motion.button
-              whileTap={{ scale: 0.9, rotate: [0, -10, 10, -10, 0] }}
-              transition={{ duration: 0.4 }}
-              onClick={handleMusubiClick}
-              className="mb-2 w-24 h-24"
-            >
-              <Stand />
-            </motion.button>
-            {promptIndex === -1 ? (
-              <p className="text-app-sub text-xs leading-relaxed text-right">
-                おもいつかない時はムスビに聞いてみましょう
-              </p>
-            ) : (
-              <div className="bg-white px-4 py-3 rounded-2xl rounded-tr-none shadow-sm max-w-[80%]">
-                <p className="text-app-text text-sm leading-relaxed mb-2">
-                  {PROMPTS[promptIndex]}
-                </p>
-                <button
-                  onClick={handleMusubiClick}
-                  className="text-app-sub text-[10px] underline underline-offset-2"
-                >
-                  別のお題を聞く
-                </button>
+            <div className="flex items-end gap-2">
+              <div>
+                {promptIndex === -1 ? (
+                  <p className="text-app-sub text-xs leading-relaxed text-right">
+                    おもいつかない時は<br />ムスビに聞いてみましょう
+                  </p>
+                ) : (
+                  <div className="bg-white px-4 py-3 rounded-2xl shadow-sm">
+                    <p className="text-app-text text-sm leading-relaxed">
+                      {PROMPTS[promptIndex]}
+                    </p>
+                  </div>
+                )}
               </div>
-            )}
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={handleMusubiClick}
+                className="w-14 h-12 shrink-0"
+              >
+                <Stand fit />
+              </motion.button>
+            </div>
           </div>
         </div>
 
@@ -127,7 +124,7 @@ export default function WriteOverlay({ onClose }: { onClose: () => void }) {
               transition={isSaved ? { duration: 0.6, times: [0, 0.2, 1], ease: "anticipate" } : { repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
               className="flex flex-col items-center gap-6"
             >
-              <div className="w-32 h-32 drop-shadow-lg">
+              <div className="w-52 h-64 drop-shadow-lg">
                 <Send />
               </div>
               <p className="text-white text-lg tracking-widest font-medium">

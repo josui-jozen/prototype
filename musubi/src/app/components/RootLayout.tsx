@@ -4,7 +4,9 @@ import { PenLine, Inbox, Mail, Settings } from "lucide-react";
 export default function RootLayout() {
   return (
     <div className="w-full max-w-md mx-auto bg-app-bg text-app-text min-h-[100dvh] relative shadow-2xl" style={{ fontFamily: '"Zen Maru Gothic", sans-serif' }}>
-      <Outlet />
+      <div className="py-36">
+        <Outlet />
+      </div>
 
       <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-app-sub/20 flex items-center justify-around h-[96px] pb-6 pt-2 px-2 z-40">
         <NavItem to="/" icon={<PenLine className="hand-drawn-icon" size={24} />} label="書く" />

@@ -27,12 +27,12 @@ export default function WriteListScreen() {
 
   return (
     <div className="min-h-[100dvh] relative">
-      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30">
+      <header className="fixed top-0 left-0 right-0 max-w-md mx-auto pt-12 px-6 pb-4 bg-app-bg z-30 after:content-[''] after:absolute after:left-0 after:right-0 after:top-full after:h-4 after:bg-gradient-to-b after:from-app-bg after:to-transparent after:pointer-events-none">
         <h1 className="text-3xl font-bold text-app-text mb-2 tracking-widest">日記</h1>
         <p className="text-app-sub text-sm tracking-widest">あなたの綴った言葉たち</p>
       </header>
 
-      <div className="pt-[120px] pb-[112px] px-6">
+      <div className="px-6">
         <div className="flex flex-col gap-4">
           {MOCK_DIARIES.map((diary) => (
             <div
@@ -66,7 +66,7 @@ export default function WriteListScreen() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="fixed bottom-44 right-6 z-50 bg-white rounded-2xl shadow-xl overflow-hidden min-w-[180px]"
+            className="fixed bottom-48 right-6 z-50 bg-white rounded-2xl shadow-xl overflow-hidden min-w-[180px]"
           >
             <button
               className="flex items-center gap-3 w-full p-4 text-app-text border-b border-app-bg hover:bg-black/5 transition-colors"
