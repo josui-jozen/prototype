@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Icon } from './icons/Icon';
 import { JaText } from './JaText';
 import { useT } from '../../i18n';
@@ -60,12 +59,8 @@ export function Values() {
         {valueDefs.map((value, index) => {
           const ruby = t(value.rubyKey as any);
           return (
-            <motion.div
+            <div
               key={value.titleKey}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group flex flex-col gap-4 p-5 rounded-2xl bg-ato-surface border border-ato-border shadow-sm hover:shadow-md transition-all duration-500"
             >
               <div className="flex items-center gap-3">
@@ -88,7 +83,7 @@ export function Values() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           );
         })}
       </div>
