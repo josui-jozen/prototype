@@ -13,7 +13,12 @@ export default function App() {
   const t = useT();
 
   useEffect(() => {
-    document.fonts.ready.then(() => setReady(true));
+    // Explicitly load the needed font weights before showing the page
+    Promise.all([
+      document.fonts.load('400 1em "Shippori Mincho"', 'あ'),
+      document.fonts.load('700 1em "Shippori Mincho"', 'あ'),
+    ]).then(() => setReady(true))
+      .catch(() => setReady(true)); // fallback: show page anyway
   }, []);
 
   const update = useCallback(() => {
