@@ -13,12 +13,25 @@ export default function App() {
   const t = useT();
 
   useEffect(() => {
-    // Explicitly load the needed font weights before showing the page
-    Promise.all([
-      document.fonts.load('400 1em "Shippori Mincho"', 'あ'),
-      document.fonts.load('700 1em "Shippori Mincho"', 'あ'),
-    ]).then(() => setReady(true))
-      .catch(() => setReady(true)); // fallback: show page anyway
+    // Poll until Shippori Mincho actually renders differently from serif fallback
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d")!;
+    const measure = (font: string) => {
+      ctx.font = `16px ${font}`;
+      return ctx.measureText("あいう日本語").width;
+    };
+    const fallbackWidth = measure("serif");
+    let attempts = 0;
+    const check = () => {
+      const width = measure("'Shippori Mincho', serif");
+      if (width !== fallbackWidth || attempts > 50) {
+        setReady(true);
+      } else {
+        attempts++;
+        setTimeout(check, 100);
+      }
+    };
+    check();
   }, []);
 
   const update = useCallback(() => {
