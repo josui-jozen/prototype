@@ -48,15 +48,15 @@ export default function App() {
       style={{ opacity: ready ? 1 : 0, color: "color-mix(in srgb, var(--ato-text) calc(var(--t, 0) * 100%), white)" }}
     >
       <VideoBackground overlayRef={overlayRef} />
-      <div className="fixed top-4 right-4 z-50">
-        <LocaleSwitcher />
-      </div>
-      <main className="relative flex flex-col items-center max-w-[640px] mx-auto px-4 sm:px-0 py-8 gap-8 sm:gap-12">
+      <main className="relative flex flex-col items-center max-w-[640px] mx-auto px-4 sm:px-0 py-8 gap-12 sm:gap-12">
+        <div className="self-end">
+          <LocaleSwitcher />
+        </div>
         <div className="flex flex-col items-center gap-2">
           <div
             role="img"
             aria-label="あと、"
-            className="w-32 sm:w-40 aspect-[200/84]"
+            className="w-18 sm:w-24 aspect-[200/84]"
             style={{
               backgroundColor: "currentColor",
               maskImage: "url(/ato-logo.webp)",
@@ -68,6 +68,7 @@ export default function App() {
             }}
           />
           <p className="ato-body tracking-widest text-center">{t("app.subtitle.line1")}<br />{t("app.subtitle.line2")}</p>
+          <p className="text-sm text-center opacity-60">フォント しっぽり明朝<span className="inline-block" style={{ width: "0.6em" }} /></p>
           {t("app.pronunciation") && <p className="ato-body text-center opacity-60">{t("app.pronunciation")}</p>}
         </div>
         <Concept />

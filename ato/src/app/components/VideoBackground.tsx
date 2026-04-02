@@ -10,7 +10,7 @@ export function VideoBackground({ overlayRef }: VideoBackgroundProps) {
         muted
         loop
         playsInline
-        src="/ movies/landscape.mp4"
+        src="/movies/landscape.mp4"
         className="absolute inset-0 w-full h-full object-cover"
       />
       {/* 黒オーバーレイ（常時） */}

@@ -26,7 +26,7 @@ export function LocaleSwitcher() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="ato-body px-3 py-1 rounded-full border border-current/20 hover:border-current/50 transition-colors duration-300"
+        className="ato-body text-xs sm:text-sm px-2.5 py-0.5 rounded-full border border-current/20 hover:border-current/50 transition-colors duration-300"
       >
         Language
       </button>

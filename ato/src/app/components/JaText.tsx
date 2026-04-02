@@ -8,6 +8,8 @@ const parser = loadDefaultJapaneseParser();
 const PARTICLES = new Set("はがのをにでともやへ");
 // 句読点・閉じ括弧等
 const PUNCTUATION_RE = /^[、。，．！？!?）》」』】〉〕）:；・ー～]+$/;
+// 短いひらがな接続語句（行頭に来るべきでない）
+const HIRAGANA_CONNECTIVE_RE = /^[\u3040-\u309F]{2,5}$/;
 
 /**
  * BudOUXの分節結果を後処理:
@@ -38,7 +40,7 @@ function mergeParticles(segments: string[]): string[] {
 
     if (hasOpen) inQuote = true;
 
-    if (result.length > 0 && (PARTICLES.has(trimmed) || PUNCTUATION_RE.test(trimmed) || inQuote || nextIsOpen)) {
+    if (result.length > 0 && (PARTICLES.has(trimmed) || PUNCTUATION_RE.test(trimmed) || HIRAGANA_CONNECTIVE_RE.test(trimmed) || inQuote || nextIsOpen)) {
       result[result.length - 1] += seg;
     } else {
       result.push(seg);
@@ -46,7 +48,17 @@ function mergeParticles(segments: string[]): string[] {
 
     if (hasClose) inQuote = false;
   }
-  return result;
+
+  // 短いセグメント（≤3文字）を次のセグメントに前方結合して孤立を防ぐ
+  const merged: string[] = [];
+  for (let i = 0; i < result.length; i++) {
+    if (result[i].trim().length <= 3 && i + 1 < result.length) {
+      result[i + 1] = result[i] + result[i + 1];
+    } else {
+      merged.push(result[i]);
+    }
+  }
+  return merged;
 }
 
 interface JaTextProps {

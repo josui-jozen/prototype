@@ -19,15 +19,13 @@ const valueDefs: ValueDef[] = [
     icon: "door",
     features: [
       { key: "values.door.feature1", icon: "door" },
-      { key: "values.door.feature2", icon: "door" },
     ],
   },
   {
     titleKey: "values.brush.title", rubyKey: "values.brush.ruby", descKey: "values.brush.description",
     icon: "brush",
     features: [
-      { key: "values.brush.feature1", icon: "brush" },
-      { key: "values.brush.feature2", icon: "palette" },
+      { key: "values.brush.feature1", icon: "palette" },
     ],
   },
   {
@@ -70,13 +68,13 @@ export function Values() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group flex flex-col gap-4 p-5 rounded-2xl bg-ato-surface border border-ato-border shadow-sm hover:shadow-md transition-all duration-500"
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="text-ato-text flex items-center shrink-0 ato-icon-align">
+                  <Icon name={value.icon} size={24} />
+                </div>
                 <div className="flex items-baseline gap-2">
                   <h4 className="ato-subheading">{t(value.titleKey as any)}</h4>
                   {ruby && <span className="ato-body tracking-widest">{ruby}</span>}
-                </div>
-                <div className="text-ato-text">
-                  <Icon name={value.icon} size={24} />
                 </div>
               </div>
 
@@ -85,7 +83,7 @@ export function Values() {
               <ul className="mt-auto space-y-2">
                 {value.features.map((feature) => (
                   <li key={feature.key} className="flex items-center gap-2">
-                    <span><Icon name={feature.icon} size={18} /></span>
+                    <span className="ato-icon-align"><Icon name={feature.icon} size={18} /></span>
                     <JaText as="span" className="ato-body tracking-wide">{t(feature.key as any)}</JaText>
                   </li>
                 ))}

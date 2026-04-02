@@ -68,6 +68,10 @@
     filter: invert(calc(1 - var(--t, 0))) brightness(calc(1 + 1 - var(--t, 0)));
   }
 
+  .ato-icon-align {
+    padding-top: var(--ato-icon-ruby-offset, 2px);
+  }
+
   .ato-body {
     font-size: var(--ato-body-size);
     font-weight: var(--ato-body-weight);
