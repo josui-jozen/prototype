@@ -8,13 +8,28 @@ export function VideoBackground({ overlayRef }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const resume = () => {
+      const v = videoRef.current;
+      if (!v || !v.paused) return;
+      v.play().catch(() => {
+        // iOS fallback: reload source to unstick the player
+        const t = v.currentTime;
+        v.src = v.src;
+        v.currentTime = t;
+        v.play().catch(() => {});
+      });
+    };
     const handleVisibility = () => {
-      if (document.visibilityState === "visible") {
-        videoRef.current?.play().catch(() => {});
-      }
+      if (document.visibilityState === "visible") resume();
     };
     document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
+    window.addEventListener("pageshow", resume);
+    window.addEventListener("focus", resume);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+      window.removeEventListener("pageshow", resume);
+      window.removeEventListener("focus", resume);
+    };
   }, []);
 
   return (
