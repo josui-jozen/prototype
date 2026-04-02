@@ -1,1 +1,15 @@
-/* Loaded via <link> in index.html for faster rendering */
+@font-face {
+  font-family: 'Shippori Mincho';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ShipporiMincho-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Shippori Mincho';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ShipporiMincho-Bold.woff2') format('woff2');
+}
