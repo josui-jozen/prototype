@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="MdStampIcon">
+<path id="Vector" d="M27.5039 6V14C27.5039 14.5304 27.7146 15.0391 28.0897 15.4142C28.4648 15.7893 28.9735 16 29.5039 16H37.5039" stroke="var(--stroke-0, #404040)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M33.5039 42H13.5039C12.443 42 11.4256 41.5786 10.6755 40.8284C9.92533 40.0783 9.50391 39.0609 9.50391 38V10C9.50391 8.93913 9.92533 7.92172 10.6755 7.17157C11.4256 6.42143 12.443 6 13.5039 6H27.5039L37.5039 16V38C37.5039 39.0609 37.0825 40.0783 36.3323 40.8284C35.5822 41.5786 34.5648 42 33.5039 42Z" stroke="var(--stroke-0, #404040)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M14.5039 30V25.8C14.5039 24.84 15.4372 24 16.5039 24C17.5706 24 18.5039 24.84 18.5039 25.8V30" stroke="var(--stroke-0, #404040)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M18.5039 30V25.8C18.5039 24.84 19.8739 24 20.7887 24C21.7035 24 22.5039 24.84 22.5039 25.8V30" stroke="var(--stroke-0, #404040)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M29 30C30.6569 30 32 28.6569 32 27C32 25.3431 30.6569 24 29 24C27.3431 24 26 25.3431 26 27C26 28.6569 27.3431 30 29 30Z" stroke="var(--stroke-0, #404040)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_6" d="M32 20V30" stroke="var(--stroke-0, #404040)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

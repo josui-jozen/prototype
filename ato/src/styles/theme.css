@@ -1,0 +1,85 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Brand tokens — edit here only */
+  --ato-accent: #0083c6;
+  --ato-base: #f6f7f8;
+  --ato-text: #373737;
+
+  /* Derived */
+  --ato-text-secondary: color-mix(in srgb, var(--ato-text) 75%, transparent);
+  --ato-text-muted: color-mix(in srgb, var(--ato-text) 55%, transparent);
+  --ato-text-subtle: color-mix(in srgb, var(--ato-text) 35%, transparent);
+  --ato-border: color-mix(in srgb, var(--ato-text) 12%, transparent);
+  --ato-border-light: color-mix(in srgb, var(--ato-text) 6%, transparent);
+  --ato-surface: #ffffff;
+  --ato-surface-dim: color-mix(in srgb, var(--ato-base) 50%, white);
+  --ato-selection: color-mix(in srgb, var(--ato-accent) 15%, transparent);
+  --ato-overlay: color-mix(in srgb, var(--ato-text) 50%, transparent);
+
+  /* Font */
+  --ato-font: 'Shippori Mincho', serif;
+
+  /* Typography */
+  --ato-heading-size: 28px;
+  --ato-heading-weight: 700;
+  --ato-subheading-size: 16px;
+  --ato-subheading-weight: 700;
+  --ato-body-size: 14px;
+  --ato-body-weight: 400;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --ato-heading-size: 36px;
+    --ato-subheading-size: 24px;
+    --ato-body-size: 18px;
+  }
+}
+
+@theme inline {
+  --font-family-base: var(--ato-font);
+  --color-ato-accent: var(--ato-accent);
+  --color-ato-base: var(--ato-base);
+  --color-ato-text: var(--ato-text);
+  --color-ato-text-secondary: var(--ato-text-secondary);
+  --color-ato-text-muted: var(--ato-text-muted);
+  --color-ato-text-subtle: var(--ato-text-subtle);
+  --color-ato-border: var(--ato-border);
+  --color-ato-border-light: var(--ato-border-light);
+  --color-ato-surface: var(--ato-surface);
+  --color-ato-surface-dim: var(--ato-surface-dim);
+  --color-ato-selection: var(--ato-selection);
+  --color-ato-overlay: var(--ato-overlay);
+}
+
+@layer base {
+  .ato-heading {
+    font-size: var(--ato-heading-size);
+    font-weight: var(--ato-heading-weight);
+  }
+
+  .ato-subheading {
+    font-size: var(--ato-subheading-size);
+    font-weight: var(--ato-subheading-weight);
+  }
+
+  .ato-icon {
+    filter: invert(calc(1 - var(--t, 0))) brightness(calc(1 + 1 - var(--t, 0)));
+  }
+
+  .ato-body {
+    font-size: var(--ato-body-size);
+    font-weight: var(--ato-body-weight);
+    line-height: 2;
+  }
+
+  body {
+    font-family: var(--ato-font);
+    background-color: var(--ato-base);
+    color: var(--ato-text);
+    line-break: strict;
+    overflow-wrap: anywhere;
+    word-break: auto-phrase;
+  }
+}

@@ -1,0 +1,45 @@
+export default {
+  // App
+  "app.subtitle.line1": "為日語最佳化的",
+  "app.subtitle.line2": "AI Markdown編輯器。",
+  "app.pronunciation": "叫它「ato」就好。",
+
+  // Concept
+  "concept.heading": "優雅地書寫日語。",
+  "concept.body1": "在這片被海洋環繞的大地上，千年以來日本人一直用這門語言書寫。不僅僅是為了傳遞資訊，更是為了將情感與感動傳達給未來的某個人。曖昧、多義——這門語言擁有獨屬於自己的表達方式。",
+  "concept.body2": "這款編輯器的個性不在於功能，而在於呈現文字的方式。我們希望用能在螢幕上美觀呈現日語的數位技術，追求書寫日語的體驗。在AI不斷變革的世界裡，我們不僅關注文字表達的內容，更珍視它呈現的美感。",
+
+  // Features
+  "features.typesetting.heading": "日文排版",
+  "features.typesetting.body": "為美觀且易讀地排列日語文字而建構的技術體系。知名程式編輯器的CSS只能處理部分禁則規則，間距調整等需要專用引擎。",
+  "features.technology.heading": "技術",
+  "features.tech.markdown": "Markdown",
+  "features.tech.ai": "AI寫作",
+  "features.tech.git": "Git整合",
+  "features.tech.publish": "發布功能（Note、Zenn等）",
+
+  // Values
+  "values.heading": "這款工具的追求",
+  "values.body": "這款工具致力於成為使用者的「可攜帶的書房」。書房是一個始終在那裡、迎接你的地方——可以說是心靈的棲息之所。為了成為這樣的存在，我們以書房的功能為比喻，定義了這款工具應有的功能。",
+  "values.door.title": "門",
+  "values.door.ruby": "",
+  "values.door.description": "與外界噪音隔絕的專注環境",
+  "values.door.feature1": "低認知成本的UI",
+  "values.door.feature2": "沉浸模式",
+  "values.brush.title": "筆",
+  "values.brush.ruby": "",
+  "values.brush.description": "專屬訂製的心愛工具",
+  "values.brush.feature1": "優美的日文排版",
+  "values.brush.feature2": "完全可自訂的UI",
+  "values.bookmark.title": "書籤",
+  "values.bookmark.ruby": "",
+  "values.bookmark.description": "如昨日般迎接你的棲息之所",
+  "values.bookmark.feature1": "跨裝置持久化工作環境",
+  "values.bookmark.feature2": "跨平台",
+  "values.shelf.title": "書架",
+  "values.shelf.ruby": "",
+  "values.shelf.description": "已累積並可隨時利用的資訊",
+  "values.shelf.feature1": "AI代理",
+  "values.shelf.feature2": "透過Git進行版本管理",
+  "values.shelf.feature3": "發布到Note和Zenn",
+} as const;
