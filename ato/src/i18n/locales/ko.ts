@@ -3,6 +3,7 @@ export default {
   "app.subtitle.line1": "일본어에 최적화된",
   "app.subtitle.line2": "AI 마크다운 에디터.",
   "app.pronunciation": "「아토」라고 불러주세요.",
+  "app.font": "폰트: Shippori Mincho",
 
   // Concept
   "concept.heading": "일본어를 아름답게 쓰자.",

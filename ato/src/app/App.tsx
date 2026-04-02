@@ -68,7 +68,7 @@ export default function App() {
             }}
           />
           <p className="ato-body tracking-widest text-center">{t("app.subtitle.line1")}<br />{t("app.subtitle.line2")}</p>
-          <p className="text-sm text-center opacity-60">フォント しっぽり明朝<span className="inline-block" style={{ width: "0.6em" }} /></p>
+          <p className="text-sm text-center opacity-60">{t("app.font")}<span className="inline-block" style={{ width: "0.6em" }} /></p>
           {t("app.pronunciation") && <p className="ato-body text-center opacity-60">{t("app.pronunciation")}</p>}
         </div>
         <Concept />

@@ -1,11 +1,26 @@
+import { useEffect, useRef } from "react";
+
 interface VideoBackgroundProps {
   overlayRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export function VideoBackground({ overlayRef }: VideoBackgroundProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") {
+        videoRef.current?.play().catch(() => {});
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
+  }, []);
+
   return (
-    <div className="fixed top-0 left-0 w-full h-dvh -z-10 bg-black">
+    <div className="fixed top-0 left-0 w-full h-screen -z-10 bg-black">
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop

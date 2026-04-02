@@ -3,6 +3,7 @@ export default {
   "app.subtitle.line1": "Optimized for Japanese,",
   "app.subtitle.line2": "an AI markdown editor.",
   "app.pronunciation": "Just call it \"ato.\"",
+  "app.font": "Font: Shippori Mincho",
 
   // Concept
   "concept.heading": "Write Japanese, beautifully.",

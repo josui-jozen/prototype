@@ -3,6 +3,7 @@ export default {
   "app.subtitle.line1": "为日语优化的",
   "app.subtitle.line2": "AI Markdown编辑器。",
   "app.pronunciation": "叫它「ato」就好。",
+  "app.font": "字体：Shippori Mincho",
 
   // Concept
   "concept.heading": "优雅地书写日语。",

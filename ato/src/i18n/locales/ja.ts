@@ -3,6 +3,7 @@ export default {
   "app.subtitle.line1": "日本語に最適化された、",
   "app.subtitle.line2": "AIマークダウンエディター。",
   "app.pronunciation": "",
+  "app.font": "フォント しっぽり明朝",
 
   // Concept
   "concept.heading": "日本語は、美しい。",
