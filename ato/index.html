@@ -12,33 +12,6 @@
     <body>
       <div id="root"></div>
       <script type="module" src="/src/main.tsx"></script>
-      <script>
-        window.addEventListener('load', function() {
-          setTimeout(function() {
-            var body = document.body;
-            var h2 = document.querySelector('h2');
-            var cs = getComputedStyle(body);
-            var h2cs = h2 ? getComputedStyle(h2) : {};
-            var fonts = [];
-            document.fonts.forEach(function(f) { fonts.push(f.family + ' ' + f.status); });
-            var info = [
-              'body font-family: ' + cs.fontFamily,
-              'body word-break: ' + cs.wordBreak,
-              'body line-break: ' + cs.lineBreak,
-              'body overflow-wrap: ' + cs.overflowWrap,
-              'h2 font-family: ' + (h2cs.fontFamily || 'N/A'),
-              'h2 font-size: ' + (h2cs.fontSize || 'N/A'),
-              'h2 font-weight: ' + (h2cs.fontWeight || 'N/A'),
-              'loaded fonts: ' + fonts.join(', '),
-              'UA: ' + navigator.userAgent,
-            ].join('\n');
-            var d = document.createElement('pre');
-            d.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:99999;background:rgba(0,0,0,0.9);color:#0f0;font:11px/1.4 monospace;padding:12px;max-height:40vh;overflow:auto;white-space:pre-wrap;word-break:break-all;';
-            d.textContent = info;
-            document.body.appendChild(d);
-          }, 2000);
-        });
-      </script>
     </body>
   </html>
   

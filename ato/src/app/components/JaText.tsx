@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { loadDefaultJapaneseParser } from "budoux";
 import { useLocale } from "../../i18n";
 
@@ -45,9 +45,12 @@ export function JaText({ children, as: Tag = "p", className, style }: JaTextProp
       {nodes.map((node, i) => (
         typeof node === "string"
           ? parser.parse(node).map((seg, j) => (
-              <span key={`${i}-${j}`} style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{seg}</span>
+              <React.Fragment key={`${i}-${j}`}>
+                {j > 0 && <wbr />}
+                <span style={{ whiteSpace: "nowrap" }}>{seg}</span>
+              </React.Fragment>
             ))
-          : <span key={i} style={{ wordBreak: "keep-all", overflowWrap: "anywhere" }}>{node}</span>
+          : <span key={i} style={{ whiteSpace: "nowrap" }}>{node}</span>
       ))}
     </Tag>
   );

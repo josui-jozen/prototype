@@ -13,7 +13,8 @@ export default function App() {
   const t = useT();
 
   useEffect(() => {
-    document.fonts.ready.then(() => setReady(true));
+    // Show page immediately, don't block on font loading
+    setReady(true);
   }, []);
 
   const update = useCallback(() => {
