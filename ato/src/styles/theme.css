@@ -25,7 +25,7 @@
   --ato-heading-weight: 700;
   --ato-subheading-size: 16px;
   --ato-subheading-weight: 700;
-  --ato-body-size: 14px;
+  --ato-body-size: 16px;
   --ato-body-weight: 400;
 }
 
@@ -81,5 +81,9 @@
     line-break: strict;
     overflow-wrap: anywhere;
     word-break: auto-phrase;
+  }
+
+  .ato-punct {
+    margin-right: -0.4em;
   }
 }
