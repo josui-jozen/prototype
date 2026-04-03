@@ -90,4 +90,12 @@
   .ato-punct {
     margin-right: -0.4em;
   }
+
+  /* Hide default play button on iOS Safari */
+  video::-webkit-media-controls {
+    display: none !important;
+  }
+  video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
 }

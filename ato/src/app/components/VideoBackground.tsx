@@ -8,11 +8,23 @@ export function VideoBackground({ overlayRef }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    // iOS requires explicit play() call
+    const tryPlay = () => {
+      v.play().catch(() => {});
+    };
+
+    // Attempt autoplay immediately
+    tryPlay();
+
+    // Also retry when video data is ready
+    v.addEventListener("canplay", tryPlay, { once: true });
+
     const resume = () => {
-      const v = videoRef.current;
-      if (!v || !v.paused) return;
+      if (!v.paused) return;
       v.play().catch(() => {
-        // iOS fallback: reload source to unstick the player
         const t = v.currentTime;
         v.src = v.src;
         v.currentTime = t;
@@ -26,6 +38,7 @@ export function VideoBackground({ overlayRef }: VideoBackgroundProps) {
     window.addEventListener("pageshow", resume);
     window.addEventListener("focus", resume);
     return () => {
+      v.removeEventListener("canplay", tryPlay);
       document.removeEventListener("visibilitychange", handleVisibility);
       window.removeEventListener("pageshow", resume);
       window.removeEventListener("focus", resume);
