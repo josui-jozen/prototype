@@ -18,7 +18,10 @@ export default function App() {
     const { video, logo, font, minTime } = loadedRef.current;
     const resourceCount = [video, logo, font].filter(Boolean).length;
     setProgress(Math.round((resourceCount / 3) * 100));
-    if (video && logo && font && minTime) setReady(true);
+    if (video && logo && font && minTime) {
+      // Show 100% briefly before fading out
+      setTimeout(() => setReady(true), 300);
+    }
   }, []);
 
   useEffect(() => {
