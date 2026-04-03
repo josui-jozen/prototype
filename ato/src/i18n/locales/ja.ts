@@ -32,7 +32,7 @@ export default {
   "values.brush.feature1": "フォントや配置のカスタム機能",
   "values.bookmark.title": "栞",
   "values.bookmark.ruby": "しおり",
-  "values.bookmark.description": "いつも変わらない状態で迎えてくれる",
+  "values.bookmark.description": "いつも変わらず迎えてくれる",
   "values.bookmark.feature1": "PCとスマホで作業環境を同期",
   "values.bookmark.feature2": "オフライン作業",
   "values.shelf.title": "棚",

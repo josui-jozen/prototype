@@ -2,7 +2,7 @@ import { Icon } from './icons/Icon';
 import { JaText } from './JaText';
 import { useT } from '../../i18n';
 
-type IconName = "door" | "brush" | "bookmark" | "shelf" | "ai-spark" | "git-branch" | "post" | "smartphone" | "palette";
+type IconName = "door" | "brush" | "bookmark" | "shelf" | "ai-spark" | "git-branch" | "post" | "smartphone" | "palette" | "knife" | "offline-cloud";
 
 interface ValueDef {
   titleKey: string;
@@ -17,7 +17,7 @@ const valueDefs: ValueDef[] = [
     titleKey: "values.door.title", rubyKey: "values.door.ruby", descKey: "values.door.description",
     icon: "door",
     features: [
-      { key: "values.door.feature1", icon: "door" },
+      { key: "values.door.feature1", icon: "knife" },
     ],
   },
   {
@@ -32,7 +32,7 @@ const valueDefs: ValueDef[] = [
     icon: "bookmark",
     features: [
       { key: "values.bookmark.feature1", icon: "smartphone" },
-      { key: "values.bookmark.feature2", icon: "smartphone" },
+      { key: "values.bookmark.feature2", icon: "offline-cloud" },
     ],
   },
   {
@@ -61,7 +61,7 @@ export function Values() {
           return (
             <div
               key={value.titleKey}
-              className="group flex flex-col gap-4 p-5 rounded-2xl bg-ato-surface border border-ato-border shadow-sm hover:shadow-md transition-all duration-500"
+              className="group flex flex-col gap-4 p-5 rounded-2xl bg-ato-surface border border-ato-border shadow-sm hover:shadow-md transition-all duration-500 sm:[--ato-body-size:16px] sm:[--ato-subheading-size:20px]"
             >
               <div className="flex items-center gap-3">
                 <div className="text-ato-text flex items-center shrink-0 ato-icon-align">
@@ -75,7 +75,7 @@ export function Values() {
 
               <JaText className="ato-body">{t(value.descKey as any)}</JaText>
 
-              <ul className="mt-auto space-y-2">
+              <ul className="space-y-2">
                 {value.features.map((feature) => (
                   <li key={feature.key} className="flex items-center gap-2">
                     <span className="ato-icon-align"><Icon name={feature.icon} size={18} /></span>

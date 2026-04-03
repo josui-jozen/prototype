@@ -8,7 +8,9 @@ type IconName =
   | "md-stamp"
   | "post"
   | "smartphone"
-  | "palette";
+  | "palette"
+  | "knife"
+  | "offline-cloud";
 
 interface IconProps {
   name: IconName;
