@@ -120,7 +120,7 @@ export default function App() {
               WebkitMaskRepeat: "no-repeat",
             }}
           />
-          <p className="ato-body tracking-widest text-center"><span className="inline-block" style={{ width: "0.4em" }} />{t("app.subtitle.line1")}<br /><span className="inline-block" style={{ width: "0.4em" }} />{t("app.subtitle.line2")}</p>
+          <p className="ato-body tracking-widest text-center"><span className="inline-block" style={{ width: "0.8em" }} />{t("app.subtitle.line1")}<br /><span className="inline-block" style={{ width: "0.8em" }} />{t("app.subtitle.line2")}</p>
           <p className="text-sm text-center opacity-60">{t("app.font")}</p>
           {t("app.pronunciation") && <p className="ato-body text-center opacity-60">{t("app.pronunciation")}</p>}
         </div>
