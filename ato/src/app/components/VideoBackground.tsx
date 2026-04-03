@@ -2,9 +2,10 @@ import { useEffect, useRef } from "react";
 
 interface VideoBackgroundProps {
   overlayRef: React.RefObject<HTMLDivElement | null>;
+  onReady?: () => void;
 }
 
-export function VideoBackground({ overlayRef }: VideoBackgroundProps) {
+export function VideoBackground({ overlayRef, onReady }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -20,7 +21,11 @@ export function VideoBackground({ overlayRef }: VideoBackgroundProps) {
     tryPlay();
 
     // Also retry when video data is ready
-    v.addEventListener("canplay", tryPlay, { once: true });
+    const handleCanPlay = () => {
+      tryPlay();
+      onReady?.();
+    };
+    v.addEventListener("canplay", handleCanPlay, { once: true });
 
     const resume = () => {
       if (!v.paused) return;
@@ -38,7 +43,7 @@ export function VideoBackground({ overlayRef }: VideoBackgroundProps) {
     window.addEventListener("pageshow", resume);
     window.addEventListener("focus", resume);
     return () => {
-      v.removeEventListener("canplay", tryPlay);
+      v.removeEventListener("canplay", handleCanPlay);
       document.removeEventListener("visibilitychange", handleVisibility);
       window.removeEventListener("pageshow", resume);
       window.removeEventListener("focus", resume);
