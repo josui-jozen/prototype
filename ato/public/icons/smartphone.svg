@@ -1,7 +1,0 @@
-<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="SmartphoneIcon">
-<path id="Vector" d="M30 4H18C14.6863 4 12 6.68629 12 10V38C12 41.3137 14.6863 44 18 44H30C33.3137 44 36 41.3137 36 38V10C36 6.68629 33.3137 4 30 4Z" stroke="var(--stroke-0, #404040)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_2" d="M20 10H28" stroke="var(--stroke-0, #404040)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_3" d="M24 38.4C25.3255 38.4 26.4 37.3255 26.4 36C26.4 34.6745 25.3255 33.6 24 33.6C22.6745 33.6 21.6 34.6745 21.6 36C21.6 37.3255 22.6745 38.4 24 38.4Z" fill="var(--fill-0, #404040)"/>
-</g>
-</svg>
