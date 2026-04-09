@@ -1,0 +1,16 @@
+:root {
+  --color-fg: #373737;
+  --color-bg: #e4e5e6;
+  font: 18px/145% system-ui, sans-serif;
+  color-scheme: light dark;
+  color: var(--color-fg);
+  background: var(--color-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}

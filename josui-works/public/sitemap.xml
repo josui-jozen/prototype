@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://josui.works/ja</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://josui.works/ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josui.works/en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://josui.works/ko"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://josui.works/zh"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://josui.works/zh-tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://josui.works/ja"/>
+  </url>
+  <url>
+    <loc>https://josui.works/en</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://josui.works/ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josui.works/en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://josui.works/ko"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://josui.works/zh"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://josui.works/zh-tw"/>
+  </url>
+  <url>
+    <loc>https://josui.works/ko</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://josui.works/ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josui.works/en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://josui.works/ko"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://josui.works/zh"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://josui.works/zh-tw"/>
+  </url>
+  <url>
+    <loc>https://josui.works/zh</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://josui.works/ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josui.works/en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://josui.works/ko"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://josui.works/zh"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://josui.works/zh-tw"/>
+  </url>
+  <url>
+    <loc>https://josui.works/zh-tw</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://josui.works/ja"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://josui.works/en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://josui.works/ko"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://josui.works/zh"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://josui.works/zh-tw"/>
+  </url>
+</urlset>
