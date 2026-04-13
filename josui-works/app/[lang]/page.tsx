@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { messages, type Lang } from '../i18n'
 import LangSwitcher from './LangSwitcher'
+import '../globals.css'
 import '../page.css'
 
 export default async function LangPage({ params }: { params: Promise<{ lang: string }> }) {

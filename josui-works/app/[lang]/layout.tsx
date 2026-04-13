@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { messages, langs, DOMAIN, type Lang } from '../i18n'
 
 export function generateStaticParams() {
@@ -65,8 +66,8 @@ export default async function LangLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MK0WZV4Y9C" />
-        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-MK0WZV4Y9C');` }} />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-MK0WZV4Y9C" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-MK0WZV4Y9C');`}</Script>
       </head>
       <body>{children}</body>
     </html>
