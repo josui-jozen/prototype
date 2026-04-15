@@ -26,14 +26,14 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       title: t.title,
       description,
       url: canonicalUrl,
-      images: [`${DOMAIN}/images/logo-pixelated.png`],
+      images: [`${DOMAIN}/logo/logo-pixelated.png`],
       type: 'website',
     },
     twitter: {
       card: 'summary',
       title: t.title,
       description,
-      images: [`${DOMAIN}/images/logo-pixelated.png`],
+      images: [`${DOMAIN}/logo/logo-pixelated.png`],
     },
   }
 }
@@ -53,7 +53,7 @@ export default async function LangLayout({
     name: "如水工作所",
     alternateName: "Josui Works",
     url: DOMAIN,
-    logo: `${DOMAIN}/images/logo.svg`,
+    logo: `${DOMAIN}/logo/logo.svg`,
     description: t?.description.replace('\n', '') ?? '',
   }
 

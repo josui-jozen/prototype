@@ -17,7 +17,7 @@ export default async function LangPage({ params }: { params: Promise<{ lang: str
       </nav>
       <main className="page">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/logo.svg" alt={t.title} className="logo" />
+        <img src="/logo/logo.svg" alt={t.title} className="logo" />
         <div className="text">
           <section className="section">
             <h1 className="title">

@@ -15,7 +15,7 @@ html, body {
 
 .ato {
   font: 16px/2 var(--ato-font);
-  color: var(--ato-sumi);
+  color: var(--ato-shironeri);
   background: var(--ato-shironeri);
   letter-spacing: 0.04em;
   color-scheme: light;
@@ -160,6 +160,15 @@ html, body {
 }
 
 /* ── Philosophy ── */
+.ato-section-title {
+  margin: 0 0 4em;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  color: color-mix(in srgb, var(--ato-shironeri) 60%, transparent);
+}
+
 .ato-philosophy {
   max-width: 560px;
   margin: 0 auto;
@@ -167,9 +176,41 @@ html, body {
 }
 
 .ato-philosophy p {
-  margin: 0 0 3em;
+  margin: 0 0 0.4em;
   font-size: 0.95rem;
   text-align: justify;
+}
+
+.ato-philosophy-paragraph {
+  margin-bottom: 3em;
+}
+
+.ato-philosophy > .fade-in:last-child .ato-philosophy-paragraph {
+  margin-bottom: 0;
+}
+
+.ato-scroll-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  pointer-events: none;
+  z-index: 0;
+  will-change: opacity;
+}
+
+.ato-philosophy-handwriting {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 8px;
+}
+
+.ato-philosophy-handwriting img {
+  height: 32px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .ato-philosophy p:last-child {
@@ -180,7 +221,7 @@ html, body {
   margin-top: 4em;
   text-align: right;
   font-size: 0.85rem;
-  color: color-mix(in srgb, var(--ato-sumi) 50%, transparent);
+  color: color-mix(in srgb, var(--ato-shironeri) 50%, transparent);
 }
 
 /* ── Trial ── */
@@ -193,6 +234,70 @@ html, body {
   max-width: 560px;
   margin: 0 auto;
   padding: 10svh 24px 20svh;
+}
+
+.ato-support {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.ato-support-desc {
+  margin: 0;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--ato-shironeri) 70%, transparent);
+  text-align: center;
+  max-width: 28em;
+  line-height: 1.8;
+}
+
+.ato-support-thanks {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+.ato-support-count {
+  margin: 0;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--ato-shironeri) 50%, transparent);
+  letter-spacing: 0.06em;
+}
+
+.ato-feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  margin-top: 2em;
+  width: 100%;
+  max-width: 28em;
+}
+
+.ato-feedback-prompt {
+  margin: 0;
+  font-size: 0.85rem;
+  text-align: center;
+  color: color-mix(in srgb, var(--ato-shironeri) 70%, transparent);
+}
+
+.ato-feedback-input {
+  width: 100%;
+  padding: 12px;
+  background: color-mix(in srgb, var(--ato-shironeri) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ato-shironeri) 30%, transparent);
+  color: var(--ato-shironeri);
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.ato-feedback-input:focus {
+  outline: none;
+  border-color: var(--ato-shironeri);
 }
 
 .ato-value-item {
@@ -214,13 +319,13 @@ html, body {
 .ato-value-desc {
   margin: 0;
   font-size: 0.85rem;
-  color: color-mix(in srgb, var(--ato-sumi) 50%, transparent);
+  color: color-mix(in srgb, var(--ato-shironeri) 50%, transparent);
   line-height: 1.9;
 }
 
 /* ── CTA ── */
 .ato-cta {
-  min-height: 50svh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -230,16 +335,16 @@ html, body {
 
 .ato-cta-status {
   font-size: 0.9rem;
-  color: color-mix(in srgb, var(--ato-sumi) 50%, transparent);
+  color: color-mix(in srgb, var(--ato-shironeri) 50%, transparent);
   letter-spacing: 0.06em;
 }
 
 .ato-cta-button {
   display: inline-block;
   padding: 12px 32px;
-  border: 1px solid var(--ato-sumi);
+  border: 1px solid var(--ato-shironeri);
   background: none;
-  color: var(--ato-sumi);
+  color: var(--ato-shironeri);
   font-family: inherit;
   font-size: 0.9rem;
   letter-spacing: 0.08em;

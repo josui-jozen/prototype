@@ -6,8 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CELL = 80;
 const MAX_SIZE = 3000;
 
-const inputPath = path.resolve(__dirname, "../public/images/logo.png");
-const outputPath = path.resolve(__dirname, "../public/images/logo-pixelated.png");
+const inputPath = path.resolve(__dirname, "../public/logo/logo.png");
+const outputPath = path.resolve(__dirname, "../public/logo/logo-pixelated.png");
 
 async function pixelate() {
   const { data, info } = await sharp(inputPath)

@@ -400,8 +400,6 @@
   text-orientation: mixed;
   text-align: justify;
   text-justify: inter-character;
-  border-inline-start: 1px dashed rgba(128, 128, 128, 0.3);
-  border-inline-end: 1px dashed rgba(128, 128, 128, 0.3);
   caret-color: transparent;
 }
 

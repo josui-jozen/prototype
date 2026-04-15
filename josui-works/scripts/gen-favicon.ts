@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const inputPath = path.resolve(__dirname, "../public/images/logo-pixelated.png");
+const inputPath = path.resolve(__dirname, "../public/logo/logo-pixelated.png");
 const faviconPath = path.resolve(__dirname, "../public/favicon.svg");
 
 async function main() {

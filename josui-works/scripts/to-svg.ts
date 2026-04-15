@@ -5,9 +5,9 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const inputPath = path.resolve(__dirname, "../public/images/logo.png");
-const pbmPath = path.resolve(__dirname, "../public/images/logo.pbm");
-const svgPath = path.resolve(__dirname, "../public/images/logo.svg");
+const inputPath = path.resolve(__dirname, "../public/logo/logo.png");
+const pbmPath = path.resolve(__dirname, "../public/logo/logo.pbm");
+const svgPath = path.resolve(__dirname, "../public/logo/logo.svg");
 
 async function main() {
   const { data, info } = await sharp(inputPath)

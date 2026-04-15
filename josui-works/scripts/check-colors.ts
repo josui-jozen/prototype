@@ -1,7 +1,7 @@
 import sharp from "sharp";
 
 async function main() {
-  const { data, info } = await sharp("public/images/sumi.png").ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { data, info } = await sharp("public/logo/sumi.png").ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   console.log("Size:", info.width, "x", info.height);
   const colors = new Set<string>();
   for (let i = 0; i < data.length; i += 4) {
