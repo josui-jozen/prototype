@@ -3,6 +3,7 @@ import Cursor from './Cursor'
 import Editor from './Editor'
 import ScrollOverlay from './ScrollOverlay'
 import SupportButton from './SupportButton'
+import NoZoom from './NoZoom'
 import './lp.css'
 
 const segmentText: Record<number, string> = {
@@ -74,17 +75,22 @@ const values = [
 export default function AtoPage() {
   return (
     <main className="ato">
+      <NoZoom />
       <section className="ato-fv">
         <video
           className="ato-bg-video"
           src="/bg/iStock-1151625702.mp4"
+          poster="/bg/poster.jpg"
           autoPlay
           loop
           muted
           playsInline
         />
         <ScrollOverlay />
-        <h1 className="ato-catchcopy">僕を書くためのノート<span className="ato-period">。</span><Cursor /></h1>
+        <div className="ato-title-group">
+          <h1 className="ato-catchcopy">僕を書くためのノート<span className="ato-period">。</span><Cursor /></h1>
+          <p className="ato-subtitle">自分好みに見た目をカスタムできるノートアプリ</p>
+        </div>
         <div className="ato-scroll-guide">
           <span className="ato-scroll-text">スクロールしてください</span>
           <span className="ato-scroll-line" />

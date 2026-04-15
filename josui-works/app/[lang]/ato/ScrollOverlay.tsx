@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-const MAX_OPACITY = 0.5
+const MAX_OPACITY = 0.8
 const START_PX = 0
 const END_PX = 400
 
@@ -10,9 +10,11 @@ export default function ScrollOverlay() {
   const [opacity, setOpacity] = useState(0)
 
   useEffect(() => {
+    const scroller = document.querySelector<HTMLElement>('.ato')
+    if (!scroller) return
     let raf = 0
     const update = () => {
-      const y = window.scrollY
+      const y = scroller.scrollTop
       const t = Math.max(0, Math.min(1, (y - START_PX) / (END_PX - START_PX)))
       setOpacity(t * MAX_OPACITY)
       raf = 0
@@ -21,9 +23,9 @@ export default function ScrollOverlay() {
       if (!raf) raf = requestAnimationFrame(update)
     }
     update()
-    window.addEventListener('scroll', onScroll, { passive: true })
+    scroller.addEventListener('scroll', onScroll, { passive: true })
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      scroller.removeEventListener('scroll', onScroll)
       if (raf) cancelAnimationFrame(raf)
     }
   }, [])
