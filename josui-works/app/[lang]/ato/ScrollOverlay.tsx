@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-const MAX_OPACITY = 0.8
+const MAX_OPACITY = 1.0
 const START_PX = 0
 const END_PX = 400
 

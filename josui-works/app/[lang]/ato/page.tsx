@@ -4,6 +4,8 @@ import Editor from './Editor'
 import ScrollOverlay from './ScrollOverlay'
 import SupportButton from './SupportButton'
 import NoZoom from './NoZoom'
+import SoundPlayer from './SoundPlayer'
+import TypedSectionTitle from './TypedSectionTitle'
 import './lp.css'
 
 const segmentText: Record<number, string> = {
@@ -41,8 +43,10 @@ const segmentText: Record<number, string> = {
 }
 
 const philosophyParagraphs: number[][][] = [
-  [[1, 2, 3], [4, 5]],
-  [[6, 7, 8], [9, 10], [11]],
+  [[1, 2, 3]],
+  [[4, 5]],
+  [[6, 7, 8]],
+  [[9, 10], [11]],
   [[12], [13, 14]],
   [[15], [16, 17]],
   [[18, 19, 20, 21], [22, 23, 24]],
@@ -76,12 +80,11 @@ export default function AtoPage() {
   return (
     <main className="ato">
       <NoZoom />
+      <SoundPlayer />
       <section className="ato-fv">
         <video
           className="ato-bg-video"
-          src="/bg/iStock-1151625702.mp4"
-          poster="/bg/poster.jpg"
-          autoPlay
+          src="/bg/iStock-2267331151-HD.mov"
           loop
           muted
           playsInline
@@ -102,27 +105,27 @@ export default function AtoPage() {
 
       <section className="ato-philosophy">
         <FadeIn>
-          <h2 className="ato-section-title">コンセプト</h2>
+          <TypedSectionTitle reading="せかいかん" final="世界観" />
         </FadeIn>
         {philosophyParagraphs.map((sentences, i) => (
-          <FadeIn key={i}>
-            <div className="ato-philosophy-paragraph">
-              {sentences.map((segs, j) => (
-                <p key={j} className="ato-philosophy-handwriting">
+          <div key={i} className="ato-philosophy-paragraph">
+            {sentences.map((segs, j) => (
+              <FadeIn key={j}>
+                <p className="ato-philosophy-handwriting">
                   {segs.map((n) => (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img key={n} src={segSrc(n)} alt={segmentText[n]} />
                   ))}
                 </p>
-              ))}
-            </div>
-          </FadeIn>
+              </FadeIn>
+            ))}
+          </div>
         ))}
       </section>
 
       <section className="ato-trial">
         <FadeIn>
-          <h2 className="ato-section-title">体験版</h2>
+          <TypedSectionTitle reading="たいけんばん" final="体験版" />
         </FadeIn>
         <FadeIn>
           <Editor />
@@ -131,7 +134,7 @@ export default function AtoPage() {
 
       <section className="ato-values">
         <FadeIn>
-          <h2 className="ato-section-title">機能</h2>
+          <TypedSectionTitle reading="きのう" final="機能" />
         </FadeIn>
         {values.map((v, i) => (
           <FadeIn key={i} className="ato-value-item">
@@ -143,7 +146,7 @@ export default function AtoPage() {
 
       <section className="ato-cta">
         <FadeIn>
-          <h2 className="ato-section-title">応援</h2>
+          <TypedSectionTitle reading="おうえん" final="応援" />
         </FadeIn>
         <FadeIn>
           <SupportButton />

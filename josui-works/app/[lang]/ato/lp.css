@@ -18,7 +18,7 @@ html, body {
 
 .ato {
   font: 16px/2 var(--ato-font);
-  color: var(--ato-shironeri);
+  color: var(--ato-sumi);
   background: var(--ato-shironeri);
   letter-spacing: 0.04em;
   color-scheme: light;
@@ -34,13 +34,11 @@ html, body {
 /* Fade-in animation */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease;
 }
 
 .fade-in.is-visible {
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* ── First View ── */
@@ -124,6 +122,10 @@ html, body {
   animation: cursor-fade 1.2s ease-in-out infinite;
 }
 
+.ato-section-title .ato-cursor {
+  background: currentColor;
+}
+
 @keyframes cursor-fade {
   0% { opacity: 0; }
   3% { opacity: 1; }
@@ -192,13 +194,15 @@ html, body {
 
 /* ── Philosophy ── */
 .ato-section-title {
+  position: relative;
+  z-index: 1;
   margin: 0;
   padding: 12svh 0;
   text-align: center;
   font-size: 1.4rem;
   font-weight: 500;
-  letter-spacing: 0.4em;
-  color: color-mix(in srgb, var(--ato-shironeri) 60%, transparent);
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--ato-sumi) 60%, transparent);
 }
 
 .ato-philosophy {
@@ -217,8 +221,73 @@ html, body {
   margin-bottom: 3em;
 }
 
-.ato-philosophy > .fade-in:last-child .ato-philosophy-paragraph {
+.ato-philosophy > .ato-philosophy-paragraph:last-child {
   margin-bottom: 0;
+}
+
+html[data-ato-awaiting] .ato-catchcopy,
+html[data-ato-awaiting] .ato-subtitle,
+html[data-ato-awaiting] .ato-scroll-guide {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+.ato-sound-prompt {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.ato-sound-prompt-inner {
+  background: var(--ato-shironeri);
+  color: var(--ato-sumi);
+  padding: 32px 24px;
+  border-radius: 4px;
+  width: calc(100% - 48px);
+  max-width: 560px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.ato-sound-prompt-inner p {
+  margin: 0 0 24px;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+}
+
+.ato-sound-prompt-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.ato-video-tester {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  font-size: 12px;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+.ato-video-tester:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.ato > section {
+  position: relative;
+  z-index: 1;
 }
 
 .ato-scroll-overlay {
@@ -227,7 +296,7 @@ html, body {
   left: 0;
   width: 100vw;
   height: 100lvh;
-  background: #000;
+  background: var(--ato-shironeri);
   pointer-events: none;
   z-index: 0;
   will-change: opacity;
@@ -246,6 +315,7 @@ html, body {
   width: auto;
   max-width: 100%;
   object-fit: contain;
+  filter: invert(1);
 }
 
 .ato-philosophy p:last-child {
@@ -256,7 +326,7 @@ html, body {
   margin-top: 4em;
   text-align: right;
   font-size: clamp(14px, 1.8vw, 16px);
-  color: color-mix(in srgb, var(--ato-shironeri) 50%, transparent);
+  color: color-mix(in srgb, var(--ato-sumi) 50%, transparent);
 }
 
 /* ── Trial ── */
@@ -292,7 +362,7 @@ html, body {
 .ato-support-desc {
   margin: 0;
   font-size: clamp(14px, 1.8vw, 16px);
-  color: var(--ato-shironeri);
+  color: var(--ato-sumi);
   text-align: center;
   max-width: 100%;
   line-height: 1.8;
@@ -330,7 +400,7 @@ html, body {
 .ato-support-count {
   margin: 0;
   font-size: clamp(14px, 1.8vw, 16px);
-  color: var(--ato-shironeri);
+  color: var(--ato-sumi);
   letter-spacing: 0.06em;
 }
 
@@ -356,15 +426,15 @@ html, body {
   margin: 0;
   font-size: clamp(14px, 1.8vw, 16px);
   text-align: center;
-  color: var(--ato-shironeri);
+  color: var(--ato-sumi);
 }
 
 .ato-feedback-input {
   width: 100%;
   padding: 12px;
-  background: color-mix(in srgb, var(--ato-shironeri) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--ato-shironeri) 30%, transparent);
-  color: var(--ato-shironeri);
+  background: color-mix(in srgb, var(--ato-sumi) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ato-sumi) 30%, transparent);
+  color: var(--ato-sumi);
   font-family: inherit;
   font-size: 16px;
   line-height: 1.7;
@@ -374,7 +444,7 @@ html, body {
 
 .ato-feedback-input:focus {
   outline: none;
-  border-color: var(--ato-shironeri);
+  border-color: var(--ato-sumi);
 }
 
 .ato-feedback-stage {
@@ -406,15 +476,15 @@ html, body {
   display: inline-block;
   width: 36px;
   height: 36px;
-  border: 2px solid color-mix(in srgb, var(--ato-shironeri) 20%, transparent);
-  border-top-color: var(--ato-shironeri);
+  border: 2px solid color-mix(in srgb, var(--ato-sumi) 20%, transparent);
+  border-top-color: var(--ato-sumi);
   border-radius: 50%;
 }
 
 .ato-feedback-status {
   font-size: clamp(14px, 1.8vw, 16px);
   letter-spacing: 0.08em;
-  color: var(--ato-shironeri);
+  color: var(--ato-sumi);
 }
 
 .ato-feedback-done {
@@ -434,7 +504,7 @@ html, body {
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: 1.5px solid var(--ato-shironeri);
+  border: 1.5px solid var(--ato-sumi);
   border-radius: 50%;
   font-size: 1.2rem;
   line-height: 1;
@@ -454,13 +524,13 @@ html, body {
   font-weight: 600;
   letter-spacing: 0.06em;
   line-height: 1.6;
-  color: color-mix(in srgb, var(--ato-shironeri) 50%, transparent);
+  color: color-mix(in srgb, var(--ato-sumi) 50%, transparent);
 }
 
 .ato-value-desc {
   margin: 0;
   font-size: clamp(14px, 1.8vw, 16px);
-  color: var(--ato-shironeri);
+  color: var(--ato-sumi);
   line-height: 1.9;
 }
 
@@ -475,16 +545,16 @@ html, body {
 
 .ato-cta-status {
   font-size: 0.9rem;
-  color: color-mix(in srgb, var(--ato-shironeri) 50%, transparent);
+  color: color-mix(in srgb, var(--ato-sumi) 50%, transparent);
   letter-spacing: 0.06em;
 }
 
 .ato-cta-button {
   display: inline-block;
   padding: 12px 32px;
-  border: 1px solid var(--ato-shironeri);
+  border: 1px solid var(--ato-sumi);
   background: none;
-  color: var(--ato-shironeri);
+  color: var(--ato-sumi);
   font-family: inherit;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
