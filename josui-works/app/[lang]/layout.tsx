@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import Script from 'next/script'
 import { messages, langs, DOMAIN, type Lang } from '../i18n'
 
 export function generateStaticParams() {
@@ -55,6 +54,7 @@ export default async function LangLayout({
 }) {
   const { lang } = await params
   const t = messages[lang as Lang]
+  const htmlLang = t?.htmlLang ?? 'ja'
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -66,18 +66,17 @@ export default async function LangLayout({
   }
 
   return (
-    <html lang={t?.htmlLang ?? 'ja'}>
-      <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-MK0WZV4Y9C" strategy="afterInteractive" />
-        <Script id="gtag-init" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-MK0WZV4Y9C');`}</Script>
-      </head>
-      <body>{children}</body>
-    </html>
+    <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.lang=${JSON.stringify(htmlLang)};`,
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
   )
 }

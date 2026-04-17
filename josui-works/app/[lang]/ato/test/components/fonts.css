@@ -1,0 +1,127 @@
+/* ============================================================
+ * Font faces for Ato test page.
+ *
+ * 各フォントを2つの alias で登録:
+ *  - bare alias (例: shippori-mincho)
+ *      unicode-range でカテゴリに限定。canvas の font-family スタックで使用。
+ *  - preview alias (例: shippori-mincho-preview)
+ *      unicode-range なし。カードラベルで「そのフォント自体」を描画するのに使用。
+ *
+ * 同一 woff2 URL を参照しているのでネットワーク上は 1 回のみ DL。
+ *
+ * カテゴリの unicode-range:
+ *  - 漢字系: CJK Unified Ideographs + Extension A + CJK記号 + 全角
+ *  - かな系: ひらがな + カタカナ
+ *  - 英数字系: Basic Latin + Latin-1 Supplement
+ * ============================================================ */
+
+/* --- Kanji fonts --- */
+@font-face {
+  font-family: 'shippori-mincho';
+  src: url('./fonts/shippori-mincho.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+3000-303F, U+FF00-FFEF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'shippori-mincho-preview';
+  src: url('./fonts/shippori-mincho.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'noto-serif-jp';
+  src: url('./fonts/noto-serif-jp.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+3000-303F, U+FF00-FFEF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'noto-serif-jp-preview';
+  src: url('./fonts/noto-serif-jp.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'zen-old-mincho';
+  src: url('./fonts/zen-old-mincho.woff2') format('woff2');
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+3000-303F, U+FF00-FFEF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'zen-old-mincho-preview';
+  src: url('./fonts/zen-old-mincho.woff2') format('woff2');
+  font-display: swap;
+}
+
+/* --- Kana fonts --- */
+@font-face {
+  font-family: 'klee-one';
+  src: url('./fonts/klee-one.woff2') format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'klee-one-preview';
+  src: url('./fonts/klee-one.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'hina-mincho';
+  src: url('./fonts/hina-mincho.woff2') format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'hina-mincho-preview';
+  src: url('./fonts/hina-mincho.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'zen-kurenaido';
+  src: url('./fonts/zen-kurenaido.woff2') format('woff2');
+  unicode-range: U+3040-309F, U+30A0-30FF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'zen-kurenaido-preview';
+  src: url('./fonts/zen-kurenaido.woff2') format('woff2');
+  font-display: swap;
+}
+
+/* --- Alnum fonts --- */
+@font-face {
+  font-family: 'inter';
+  src: url('./fonts/inter.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'inter-preview';
+  src: url('./fonts/inter.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'eb-garamond';
+  src: url('./fonts/eb-garamond.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'eb-garamond-preview';
+  src: url('./fonts/eb-garamond.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'cormorant';
+  src: url('./fonts/cormorant.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'cormorant-preview';
+  src: url('./fonts/cormorant.woff2') format('woff2');
+  font-display: swap;
+}

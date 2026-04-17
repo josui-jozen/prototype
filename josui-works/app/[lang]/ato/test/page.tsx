@@ -28,7 +28,7 @@ export default function TestPage() {
             <div key={o.key} className="flex flex-col items-center gap-4">
               <div style={{ transform: 'scale(0.45)', transformOrigin: 'top center', width: 393, height: 400 }}>
                 <PhoneMockup>
-                  <AtoCanvas theme={p.theme} settings={p.settings} content={p.content} interactive={o.interactive} />
+                  <AtoCanvas settings={p.settings} content={p.content} interactive={o.interactive} />
                 </PhoneMockup>
               </div>
               <div className="flex flex-col items-center">
