@@ -1,0 +1,59 @@
+.lang-switcher {
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid var(--color-fg);
+  border-radius: 20px;
+  overflow: hidden;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.lang-switcher:hover,
+.lang-switcher.is-open {
+  opacity: 1;
+}
+
+.lang-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  background: none;
+  color: var(--color-fg);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.lang-options {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.lang-switcher.is-open .lang-options {
+  grid-template-rows: 1fr;
+}
+
+.lang-options > * {
+  overflow: hidden;
+}
+
+.lang-option {
+  display: block;
+  padding: 10px 16px;
+  color: var(--color-fg);
+  text-decoration: none;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  text-align: center;
+  transition: background 0.15s;
+}
+
+.lang-option:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

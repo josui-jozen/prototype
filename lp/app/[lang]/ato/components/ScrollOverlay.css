@@ -1,0 +1,11 @@
+.ato-scroll-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100lvh;
+  background: var(--ato-shironeri);
+  pointer-events: none;
+  z-index: 0;
+  will-change: opacity;
+}

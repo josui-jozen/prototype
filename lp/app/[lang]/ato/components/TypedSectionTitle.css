@@ -1,0 +1,11 @@
+.ato-section-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 12svh 0;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--ato-sumi) 60%, transparent);
+}

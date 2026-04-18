@@ -1,0 +1,61 @@
+.ato-sound-prompt {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.ato-sound-prompt-inner {
+  background: var(--ato-shironeri);
+  color: var(--ato-sumi);
+  padding: 32px 24px;
+  border-radius: 4px;
+  width: calc(100% - 48px);
+  max-width: 560px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.ato-sound-prompt-inner p {
+  margin: 0 0 24px;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+}
+
+.ato-sound-prompt-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.ato-video-tester {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  font-size: 12px;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+.ato-video-tester:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* SoundPlayer がマウント中に html[data-ato-awaiting] を立てる。
+   その間は FV 内のアニメーションを一時停止して、ユーザーの同意後に発火させる。 */
+html[data-ato-awaiting] .ato-catchcopy,
+html[data-ato-awaiting] .ato-subtitle,
+html[data-ato-awaiting] .ato-scroll-guide {
+  animation-play-state: paused;
+  opacity: 0;
+}

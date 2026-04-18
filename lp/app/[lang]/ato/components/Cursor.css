@@ -1,0 +1,22 @@
+.ato-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--ato-shironeri);
+  margin-left: 2px;
+  position: relative;
+  top: 0.13em;
+  animation: cursor-fade 1.2s ease-in-out infinite;
+}
+
+/* TypedSectionTitle 内に置かれた時は見出しテキストと同色に */
+.ato-section-title .ato-cursor {
+  background: currentColor;
+}
+
+@keyframes cursor-fade {
+  0% { opacity: 0; }
+  3% { opacity: 1; }
+  40% { opacity: 1; }
+  100% { opacity: 0; }
+}
