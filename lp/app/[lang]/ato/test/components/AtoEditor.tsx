@@ -265,7 +265,7 @@ export function AtoEditor({
           <button
             type="button"
             onClick={() => setEditingPositions(false)}
-            className="absolute bottom-6 left-1/2 px-6 py-2 rounded-full text-[12px] font-medium z-50"
+            className="absolute bottom-6 left-1/2 px-6 py-2 rounded-full text-xs font-medium z-50"
             style={{ background: '#fff', color: '#000', transform: 'translateX(-50%)' }}
           >
             完了

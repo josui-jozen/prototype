@@ -162,7 +162,7 @@ function Row({ depth, onClick, children }: { depth: number; onClick: () => void;
     <button
       type="button"
       onClick={onClick}
-      className="w-full flex items-center gap-2 px-3 py-2 rounded-[8px] text-left cursor-pointer"
+      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left cursor-pointer"
       style={{ paddingLeft: 12 + depth * 16 }}
     >
       {children}

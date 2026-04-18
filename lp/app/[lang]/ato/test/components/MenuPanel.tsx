@@ -105,7 +105,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
               key={t}
               type="button"
               onClick={() => setTab(t)}
-              className="px-3 py-3 text-[12px] font-bold whitespace-nowrap relative cursor-pointer"
+              className="px-3 py-3 text-xs font-bold whitespace-nowrap relative cursor-pointer"
               style={{ color: tab === t ? 'var(--ato-text)' : 'var(--ato-sub)' }}
             >
               {t}
@@ -124,8 +124,8 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
         {tab === 'プリセット' && (
           <>
             <div>
-              <h3 className="text-[16px] font-bold" style={{ color: 'var(--ato-text)' }}>テーマ・プリセット</h3>
-              <p className="text-[12px] mt-1" style={{ color: 'var(--ato-sub)' }}>お好みの世界観をワンタップで適用できます</p>
+              <h3 className="text-base font-bold" style={{ color: 'var(--ato-text)' }}>テーマ・プリセット</h3>
+              <p className="text-xs mt-1" style={{ color: 'var(--ato-sub)' }}>お好みの世界観をワンタップで適用できます</p>
               <div className="mt-4 -mx-5 px-5 overflow-x-auto flex gap-3 pb-2">
                 {Object.entries(presets).map(([key, p]) => {
                   const Icon = PRESET_ICONS[p.icon]
@@ -147,7 +147,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
                       <Icon size={22} strokeWidth={1.4} />
                       <div>
                         <div className="text-[9px] font-bold tracking-[0.2em] opacity-50">THEME</div>
-                        <div className="text-[16px] font-medium mt-0.5">{p.label}</div>
+                        <div className="text-base font-medium mt-0.5">{p.label}</div>
                       </div>
                     </SelectCard>
                   )
@@ -339,7 +339,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
                     key={o.id}
                     selected={settings.editorImageFrame === o.id}
                     onClick={() => update('editorImageFrame', o.id)}
-                    className="h-10 flex items-center justify-center text-[12px]"
+                    className="h-10 flex items-center justify-center text-xs"
                     style={o.style}
                   >
                     {o.label}
@@ -411,7 +411,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
                     key={o.id}
                     selected={o.id === 'small'}
                     onClick={() => {}}
-                    className="h-10 flex items-center justify-center text-[12px]"
+                    className="h-10 flex items-center justify-center text-xs"
                   >
                     {o.label}
                   </SelectCard>
@@ -425,13 +425,13 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
           <>
             <Section label="レイアウト調整">
               <div className="flex items-center justify-between">
-                <span className="text-[12px]" style={{ color: 'var(--ato-sub)' }}>
+                <span className="text-xs" style={{ color: 'var(--ato-sub)' }}>
                   画面上の全ボタンの位置を調整
                 </span>
                 <button
                   type="button"
                   onClick={onOpenPositionPicker}
-                  className="px-3 py-2 rounded-[8px] text-[12px] cursor-pointer"
+                  className="px-3 py-2 rounded-lg text-xs cursor-pointer"
                   style={{
                     background: 'var(--ato-ui-bg-color)',
                     border: '1px solid var(--ato-border)',
@@ -470,7 +470,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
                         key={p}
                         selected={settings.menuSlide === p}
                         onClick={() => update('menuSlide', p)}
-                        className="h-10 flex items-center justify-center text-[12px]"
+                        className="h-10 flex items-center justify-center text-xs"
                       >
                         {['上', '下', '左', '右'][i]}
                       </SelectCard>
@@ -501,7 +501,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
                       value={settings.menuButtonImage}
                       onChange={(dataUrl) => onChange({ ...settings, menuButtonImage: dataUrl, menuButtonDesign: 'upload' })}
                       selected={settings.menuButtonDesign === 'upload'}
-                      className="w-full h-12 flex items-center justify-center gap-2 text-[12px] font-medium"
+                      className="w-full h-12 flex items-center justify-center gap-2 text-xs font-medium"
                     >
                       <Upload size={14} />
                       アイコンデザインをアップロード
@@ -547,7 +547,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
                         key={p}
                         selected={settings.filesSlide === p}
                         onClick={() => update('filesSlide', p)}
-                        className="h-10 flex items-center justify-center text-[12px]"
+                        className="h-10 flex items-center justify-center text-xs"
                       >
                         {['上', '下', '左', '右'][i]}
                       </SelectCard>
@@ -608,7 +608,7 @@ function TextureCard({ label, src, selected, onClick }: { label: string; src: st
     <button
       type="button"
       onClick={onClick}
-      className="relative shrink-0 w-[100px] h-[120px] rounded-[12px] p-3 text-left flex flex-col justify-end cursor-pointer overflow-hidden"
+      className="relative shrink-0 w-[100px] h-[120px] rounded-xl p-3 text-left flex flex-col justify-end cursor-pointer overflow-hidden"
       style={{
         border: selected ? `2px solid var(--ato-text)` : `1px solid var(--ato-border)`,
         backgroundImage: `linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.45)), url(${src})`,
@@ -742,7 +742,7 @@ function normalizeColorForPicker(v: string): string {
 function Section({ label, icon, children }: { label: string; icon?: React.ReactNode; children: React.ReactNode }) {
   return (
     <div>
-      <div className="text-[12px] font-medium mb-2 flex items-center gap-1" style={{ color: 'var(--ato-sub)' }}>
+      <div className="text-xs font-medium mb-2 flex items-center gap-1" style={{ color: 'var(--ato-sub)' }}>
         {label}
         {icon}
       </div>

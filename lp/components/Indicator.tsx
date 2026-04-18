@@ -15,9 +15,9 @@ export function Indicator({
 }) {
   return (
     <div className="flex items-center justify-between">
-      <span className="text-[12px] font-medium" style={{ color: 'var(--ui-sub)' }}>{label}</span>
+      <span className="text-xs font-medium" style={{ color: 'var(--ui-sub)' }}>{label}</span>
       <div
-        className="flex items-center gap-1 p-1 rounded-[8px]"
+        className="flex items-center gap-1 p-1 rounded-lg"
         style={{ background: 'var(--ui-surface)', border: `1px solid var(--ui-border)` }}
       >
         <button
@@ -28,7 +28,7 @@ export function Indicator({
         >
           <Minus size={12} />
         </button>
-        <div className="min-w-[48px] text-center text-[12px]" style={{ color: 'var(--ui-fg)' }}>{value}</div>
+        <div className="min-w-12 text-center text-xs" style={{ color: 'var(--ui-fg)' }}>{value}</div>
         <button
           type="button"
           onClick={onPlus}

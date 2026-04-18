@@ -15,7 +15,7 @@ export function TextInput({
   monospace?: boolean
   rows?: number
 }) {
-  const baseClass = 'w-full px-3 py-2 rounded-[8px] outline-none resize-none'
+  const baseClass = 'w-full px-3 py-2 rounded-lg outline-none resize-none'
   const typeClass = monospace ? 'text-[11px] leading-[1.6] font-mono' : 'text-[13px]'
   const style: React.CSSProperties = {
     background: 'var(--ui-surface)',
