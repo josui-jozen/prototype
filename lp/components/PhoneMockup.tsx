@@ -29,8 +29,10 @@ export function PhoneMockup({
         src={bezel}
         alt=""
         aria-hidden="true"
+        width={453}
+        height={912}
         className="absolute pointer-events-none max-w-none z-50"
-        style={{ top: -30, left: -30 }}
+        style={{ top: -30, left: -30, width: 453, height: 912 }}
       />
     </div>
   );
