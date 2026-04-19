@@ -1,5 +1,28 @@
 'use client'
 
+import React from 'react'
+
+export function IconButton({ children, style, type = 'button', ...rest }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button
+      type={type}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 8,
+        cursor: 'pointer',
+        background: 'transparent',
+        border: 'none',
+        ...style,
+      }}
+      {...rest}
+    >
+      {children}
+    </button>
+  )
+}
+
 export function PrimaryButton({
   children,
   onClick,

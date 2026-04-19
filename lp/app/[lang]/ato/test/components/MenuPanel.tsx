@@ -2,13 +2,14 @@
 
 import { useState } from 'react'
 import { Sun, Moon, Flower, Scroll, BookOpen, Code2, AlignLeft, Upload, Ban, Check } from 'lucide-react'
-import { type Settings, type PresetIcon, type SectionKey, type UiBorder, type Sides, SECTIONS, presets, kanjiFonts, kanaFonts, alnumFonts, borderToStyle } from './settings'
-import { PrimaryButton } from '@/components/Button'
-import { TextInput } from '@/components/TextInput'
-import { Indicator } from '@/components/Indicator'
-import { Toggle } from '@/components/Toggle'
-import { SelectCard } from '@/components/SelectCard'
-import { UploadPicker } from '@/components/UploadPicker'
+import { type Settings, type PresetIcon, type SectionKey, type UiBorder, type Sides, SECTIONS, presets, kanjiFonts, kanaFonts, alnumFonts } from './settings'
+import { Panel } from './Panel'
+import { PrimaryButton } from './Button'
+import { TextInput } from './TextInput'
+import { Indicator } from './Indicator'
+import { Toggle } from './Toggle'
+import { SelectCard } from './SelectCard'
+import { UploadPicker } from './UploadPicker'
 import mokume from '../assets/textures/mokume.jpg'
 import konkuri from '../assets/textures/konkuri.jpg'
 import tegami from '../assets/textures/tegami.jpg'
@@ -52,52 +53,19 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
     const next = Math.min(64, Math.max(8, cur + delta))
     onChange({ ...settings, sectionSize: { ...settings.sectionSize, [key]: next } })
   }
-  const bumpLetterSpacing = (delta: number) => {
-    const next = Math.min(0.5, Math.max(-0.1, +(settings.letterSpacing + delta).toFixed(2)))
-    onChange({ ...settings, letterSpacing: next })
+  const bumpLetterSpacing = (key: SectionKey, delta: number) => {
+    const cur = settings.sectionLetterSpacing[key]
+    const next = Math.min(0.5, Math.max(-0.1, +(cur + delta).toFixed(2)))
+    onChange({ ...settings, sectionLetterSpacing: { ...settings.sectionLetterSpacing, [key]: next } })
   }
-
-  const slide = settings.menuSlide
-  const isHorizontal = slide === 'left' || slide === 'right'
-  const panelRadius = settings.panelBorderRadius
-  const panelBorderStyle = borderToStyle(settings.panelBorder)
-  const panelStyle: React.CSSProperties & Record<`--${string}`, string> = {
-    position: 'absolute',
-    background: 'var(--ato-ui-bg-color)',
-    color: settings.panelTextColor ?? settings.textColor,
-    '--ato-text': settings.panelTextColor ?? settings.textColor,
-    '--ato-sub': settings.panelTextColor
-      ? `color-mix(in srgb, ${settings.panelTextColor} 55%, ${settings.uiBgColor} 45%)`
-      : settings.subColor,
-    display: 'flex',
-    flexDirection: 'column',
-    zIndex: 40,
-    borderRadius: panelRadius,
-    ...panelBorderStyle,
-  }
-  if (slide === 'bottom') {
-    Object.assign(panelStyle, { left: 0, right: 0, bottom: 0, height: '85%' })
-  } else if (slide === 'top') {
-    Object.assign(panelStyle, { left: 0, right: 0, top: 0, height: '85%' })
-  } else if (slide === 'left') {
-    Object.assign(panelStyle, { left: 0, top: 0, bottom: 0, width: '85%' })
-  } else {
-    Object.assign(panelStyle, { right: 0, top: 0, bottom: 0, width: '85%' })
+  const bumpLineHeight = (key: SectionKey, delta: number) => {
+    const cur = settings.sectionLineHeight[key]
+    const next = Math.min(3.5, Math.max(1.0, +(cur + delta).toFixed(1)))
+    onChange({ ...settings, sectionLineHeight: { ...settings.sectionLineHeight, [key]: next } })
   }
 
   return (
-    <div style={panelStyle}>
-      <div className="shrink-0 pt-4 pb-1 flex justify-center">
-        <div
-          className="rounded-full"
-          style={{
-            background: 'var(--ato-border)',
-            width: isHorizontal ? 4 : 40,
-            height: isHorizontal ? 40 : 4,
-          }}
-        />
-      </div>
-
+    <Panel settings={settings} slide={settings.menuSlide}>
       <div className="shrink-0" style={{ borderBottom: '1px solid var(--ato-border)' }}>
         <div className="flex px-4">
           {TABS.map((t) => (
@@ -112,7 +80,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
               {tab === t && (
                 <div
                   className="absolute bottom-0 left-0 right-0 h-[2px] rounded-t-full"
-                  style={{ background: 'var(--ato-accent)' }}
+                  style={{ background: 'var(--ato-text)' }}
                 />
               )}
             </button>
@@ -273,20 +241,32 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
                 />
               </div>
             </Section>
-            <Section label="文字列間">
-              <Indicator
-                label="通常文字"
-                value={`${settings.letterSpacing.toFixed(2)}em`}
-                onMinus={() => bumpLetterSpacing(-0.01)}
-                onPlus={() => bumpLetterSpacing(0.01)}
-              />
+            <Section label="行間">
+              <div className="space-y-2">
+                {SECTIONS.map((s) => (
+                  <Indicator
+                    key={s.key}
+                    label={s.label}
+                    value={settings.sectionLineHeight[s.key].toFixed(1)}
+                    onMinus={() => bumpLineHeight(s.key, -0.1)}
+                    onPlus={() => bumpLineHeight(s.key, 0.1)}
+                  />
+                ))}
+              </div>
             </Section>
-            <Indicator
-              label="行間"
-              value={settings.lineHeight.toFixed(1)}
-              onMinus={() => onChange({ ...settings, lineHeight: Math.max(1.2, +(settings.lineHeight - 0.1).toFixed(1)) })}
-              onPlus={() => onChange({ ...settings, lineHeight: Math.min(3.5, +(settings.lineHeight + 0.1).toFixed(1)) })}
-            />
+            <Section label="文字列間">
+              <div className="space-y-2">
+                {SECTIONS.map((s) => (
+                  <Indicator
+                    key={s.key}
+                    label={s.label}
+                    value={`${settings.sectionLetterSpacing[s.key].toFixed(2)}em`}
+                    onMinus={() => bumpLetterSpacing(s.key, -0.01)}
+                    onPlus={() => bumpLetterSpacing(s.key, 0.01)}
+                  />
+                ))}
+              </div>
+            </Section>
           </>
         )}
 
@@ -559,7 +539,7 @@ export function MenuPanel({ settings, onChange, onOpenPositionPicker }: { settin
           </>
         )}
       </div>
-    </div>
+    </Panel>
   )
 }
 

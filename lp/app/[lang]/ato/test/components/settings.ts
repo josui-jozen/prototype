@@ -7,7 +7,7 @@ const nukoDark = nukoDarkSrc.src
 
 /* ============================================================
  * Ato Settings
- * - "Editor"    : 全画面の入力エリア (AtoEditor)
+ * - "Editor"    : 全画面の入力エリア
  * - "{機能}Button": エディター上に配置するトリガー (menu/files)
  * - "{機能}Panel" : Button によって開かれる内容 (menu/files)
  * - 命名規則:
@@ -49,15 +49,12 @@ export type Settings = {
   // セクション
   sectionSize: Record<SectionKey, number>
   sectionColors: Record<SectionKey, string | null>  // null なら textColor 継承
+  sectionLineHeight: Record<SectionKey, number>
+  sectionLetterSpacing: Record<SectionKey, number>
 
   // テキスト装飾
-  letterSpacing: number
-  lineHeight: number
-  columnGap: number
   direction: 'horizontal-tb' | 'vertical-rl'
   textColor: string
-  subColor: string
-  accent: string
 
   // Editor (全画面の入力エリア)
   editorWidth: number                              // %
@@ -93,28 +90,39 @@ export type Settings = {
 }
 
 function sectionSizesFor(normal: number): Record<SectionKey, number> {
-  return { normal, h1: normal + 13, h2: normal + 7, h3: normal + 3, bold: normal }
+  return { normal, h1: normal + 16, h2: normal + 12, h3: normal + 4, bold: normal + 3 }
 }
 
-/** 薄い一辺ボーダー + 周囲への柔らかい影。Panel 用の共通デフォルト。 */
-function panelBorderOf(borderColor: string, shadowColor: string, shadowBlur = 40): UiBorder {
+function sectionLineHeightsFor(normal: number): Record<SectionKey, number> {
+  return { normal, h1: 3.2, h2: 3.6, h3: 4.2, bold: 1 }
+}
+
+function sectionLetterSpacingsFor(normal: number): Record<SectionKey, number> {
+  return { normal, h1: 0.08, h2: 0.06, h3: 0.04, bold: normal }
+}
+
+/** 全UIパーツ共通の影（Button / Panel 共通、全プリセット共通）。 */
+const SHARED_SHADOW = {
+  offset: { top: 0, right: 0, bottom: 2, left: 0 },
+  color: 'rgba(0,0,0,0.14)',
+  blur: 10,
+}
+
+/** 薄い一辺ボーダー + 共通の影。Panel 用。 */
+function panelBorderOf(borderColor: string, _shadowColor?: string, _shadowBlur?: number): UiBorder {
   return {
     size: sides(1),
     color: sides(borderColor),
-    shadow: { offset: sides(12), color: shadowColor, blur: shadowBlur },
+    shadow: SHARED_SHADOW,
   }
 }
 
-/** 薄い縁取り + 下方向の淡い影。Button 用の共通デフォルト。 */
-function buttonBorderOf(borderColor: string, shadowColor = 'rgba(0,0,0,0.14)'): UiBorder {
+/** 薄い縁取り + 共通の影。Button 用。 */
+function buttonBorderOf(borderColor: string, _shadowColor?: string): UiBorder {
   return {
     size: sides(1),
     color: sides(borderColor),
-    shadow: {
-      offset: { top: 0, right: 0, bottom: 2, left: 0 },
-      color: shadowColor,
-      blur: 10,
-    },
+    shadow: SHARED_SHADOW,
   }
 }
 
@@ -140,31 +148,28 @@ export const alnumFonts: { id: AlnumFontId; label: string }[] = [
   { id: 'cormorant', label: 'Cormorant' },
 ]
 
-const defaultSettings: Settings = {
-  fontKanji: 'noto-serif-jp',
-  fontKana: 'hina-mincho',
-  fontAlnum: 'inter',
-  sectionSize: sectionSizesFor(15),
-  sectionColors: { normal: null, h1: null, h2: null, h3: null, bold: null },
-  letterSpacing: 0,
-  lineHeight: 1.8,
-  columnGap: 0,
+export const defaultSettings: Settings = {
+  fontKanji: 'shippori-mincho',
+  fontKana: 'shippori-mincho',
+  fontAlnum: 'shippori-mincho',
+  sectionSize: sectionSizesFor(16),
+  sectionColors: { normal: '#373737', h1: '#949495', h2: '#949495', h3: '#949495', bold: '#373737' },
+  sectionLineHeight: sectionLineHeightsFor(2.0),
+  sectionLetterSpacing: sectionLetterSpacingsFor(0.02),
   direction: 'horizontal-tb',
-  textColor: '#111111',
-  subColor: '#888888',
-  accent: '#111111',
+  textColor: '#373737',
   editorWidth: 100,
-  editorBgColor: '#ffffff',
+  editorBgColor: '#fbfaf3',
   editorBgImage: null,
   editorRule: 'none',
   editorRuleColor: '#d4d4d8',
   editorImageFrame: 'none',
   editorImageRotate: 0,
-  uiBgColor: '#ffffff',
-  buttonBorderRadius: 12,
+  uiBgColor: '#fbfaf3',
+  buttonBorderRadius: 8,
   panelBorderRadius: 24,
   buttonBorder: buttonBorderOf('rgba(17,17,17,0.1)'),
-  panelBorder: panelBorderOf('#e5e5e5', 'rgba(0,0,0,0.08)'),
+  panelBorder: panelBorderOf('#e5e5e5'),
   panelTextColor: null,
   menuPosition: { x: 91, y: 10 },
   menuSlide: 'right',
@@ -184,8 +189,8 @@ export const presets: Record<string, { label: string; icon: PresetIcon; settings
     icon: 'sun',
     settings: {
       ...defaultSettings,
-      lineHeight: 1.9,
-      letterSpacing: 0.02,
+      sectionLineHeight: sectionLineHeightsFor(1.9),
+      sectionLetterSpacing: sectionLetterSpacingsFor(0.02),
       buttonBorderRadius: 16,
       panelBorderRadius: 20,
     },
@@ -208,12 +213,10 @@ export const presets: Record<string, { label: string; icon: PresetIcon; settings
       fontKana: 'klee-one',
       fontAlnum: 'inter',
       sectionSize: { ...sectionSizesFor(14), h1: 34, h2: 18, bold: 16 },
-      lineHeight: 2.3,
-      letterSpacing: 0.02,
+      sectionLineHeight: sectionLineHeightsFor(2.3),
+      sectionLetterSpacing: sectionLetterSpacingsFor(0.02),
       editorWidth: 92,
       textColor: '#e5e5ea',
-      subColor: '#666666',
-      accent: '#e5e5ea',
       editorBgColor: '#1c1c1e',
       editorRule: 'dot',
       editorRuleColor: '#2a2a2a',
@@ -251,12 +254,10 @@ export const presets: Record<string, { label: string; icon: PresetIcon; settings
       fontKana: 'klee-one',
       fontAlnum: 'cormorant',
       sectionSize: { ...sectionSizesFor(14), h1: 24, h2: 18, bold: 17 },
-      lineHeight: 2.3,
-      letterSpacing: 0.04,
+      sectionLineHeight: sectionLineHeightsFor(2.3),
+      sectionLetterSpacing: sectionLetterSpacingsFor(0.04),
       editorWidth: 90,
       textColor: '#fce4ec',
-      subColor: '#f5c8d5',
-      accent: '#ffd6e0',
       editorBgColor: '#fdf2f5',
       editorBgImage: nukoDark,
       editorRule: 'horizontal',
@@ -294,14 +295,11 @@ export const presets: Record<string, { label: string; icon: PresetIcon; settings
       fontKana: 'zen-kurenaido',
       fontAlnum: 'eb-garamond',
       sectionSize: { ...sectionSizesFor(15), h1: 22, h2: 18, bold: 17 },
-      lineHeight: 2.8,
-      letterSpacing: 0.08,
-      columnGap: 0.6,
+      sectionLineHeight: sectionLineHeightsFor(2.8),
+      sectionLetterSpacing: sectionLetterSpacingsFor(0.08),
       editorWidth: 85,
       direction: 'vertical-rl',
       textColor: '#3d3934',
-      subColor: '#8c8279',
-      accent: '#a69c8e',
       editorBgColor: '#fcfaf2',
       editorBgImage: persona3Photo,
       editorRule: 'horizontal',
@@ -337,14 +335,11 @@ export const presets: Record<string, { label: string; icon: PresetIcon; settings
       fontKana: 'hina-mincho',
       fontAlnum: 'eb-garamond',
       sectionSize: { ...sectionSizesFor(17), h1: 32, h2: 22, bold: 20 },
-      lineHeight: 3.0,
-      letterSpacing: 0.12,
-      columnGap: 0.8,
+      sectionLineHeight: sectionLineHeightsFor(3.0),
+      sectionLetterSpacing: sectionLetterSpacingsFor(0.12),
       editorWidth: 80,
       direction: 'vertical-rl',
       textColor: '#2c2b29',
-      subColor: '#8c8279',
-      accent: '#5c4a44',
       editorBgColor: '#f2ede4',
       editorRule: 'horizontal',
       editorRuleColor: '#c4baa8',

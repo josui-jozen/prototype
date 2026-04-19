@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { Search, Folder, FolderOpen, FileText, BookOpen, ChevronDown, ChevronRight, MoreHorizontal } from 'lucide-react'
-import { type Settings, borderToStyle } from './settings'
+import { type Settings } from './settings'
+import { Panel } from './Panel'
 
 type FileNode = { kind: 'file'; name: string }
 type FolderNode = { kind: 'folder'; name: string; children: TreeNode[]; initialOpen?: boolean }
@@ -38,42 +39,8 @@ const NOTEBOOKS: TreeNode[] = [
 ]
 
 export function FilesPanel({ settings }: { settings: Settings }) {
-  const panelRadius = settings.panelBorderRadius
-  const slide = settings.filesSlide
-  const panelBorderStyle = borderToStyle(settings.panelBorder)
-  const panelStyle: React.CSSProperties & Record<`--${string}`, string> = {
-    position: 'absolute',
-    background: 'var(--ato-ui-bg-color)',
-    color: settings.panelTextColor ?? settings.textColor,
-    '--ato-text': settings.panelTextColor ?? settings.textColor,
-    '--ato-sub': settings.panelTextColor
-      ? `color-mix(in srgb, ${settings.panelTextColor} 55%, ${settings.uiBgColor} 45%)`
-      : settings.subColor,
-    display: 'flex',
-    flexDirection: 'column',
-    zIndex: 40,
-    borderRadius: panelRadius,
-    ...panelBorderStyle,
-  }
-  if (slide === 'bottom') {
-    Object.assign(panelStyle, { left: 0, right: 0, bottom: 0, height: '85%' })
-  } else if (slide === 'top') {
-    Object.assign(panelStyle, { left: 0, right: 0, top: 0, height: '85%' })
-  } else if (slide === 'right') {
-    Object.assign(panelStyle, { right: 0, top: 0, bottom: 0, width: '85%' })
-  } else {
-    Object.assign(panelStyle, { left: 0, top: 0, bottom: 0, width: '85%' })
-  }
-
   return (
-    <div style={panelStyle}>
-      <div className="shrink-0 pt-4 pb-1 flex justify-center">
-        <div
-          className="rounded-full"
-          style={{ background: 'var(--ato-border)', width: 4, height: 40 }}
-        />
-      </div>
-
+    <Panel settings={settings} slide={settings.filesSlide}>
       <div className="px-4 pt-3 pb-2 shrink-0">
         <div
           className="flex items-center gap-2 px-3 py-2 rounded-[10px]"
@@ -102,7 +69,7 @@ export function FilesPanel({ settings }: { settings: Settings }) {
           <Node key={`n-${i}`} node={n} depth={0} />
         ))}
       </div>
-    </div>
+    </Panel>
   )
 }
 

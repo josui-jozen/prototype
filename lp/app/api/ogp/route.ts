@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 /**
  * GET /api/ogp?url=...
  * 指定 URL の HTML を fetch し、OGP メタタグを抽出して返す。
- * 本文中の URL 行を AtoEditor がプレビューする際のデータソース。
+ * 本文中の URL 行を Editor がプレビューする際のデータソース。
  */
 export async function GET(req: NextRequest) {
   const url = req.nextUrl.searchParams.get('url')

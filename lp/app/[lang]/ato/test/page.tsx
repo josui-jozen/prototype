@@ -3,7 +3,7 @@
 import './tailwind.css'
 import './page.css'
 import { PhoneMockup } from '@/components/PhoneMockup'
-import { AtoEditor } from './components/AtoEditor'
+import { Editor } from './components/Editor'
 import { presets } from './components/settings'
 
 const ORDER = [
@@ -29,7 +29,7 @@ export default function TestPage() {
             <div key={o.key} className="flex flex-col items-center gap-4">
               <div style={{ transform: 'scale(0.45)', transformOrigin: 'top center', width: 393, height: 400 }}>
                 <PhoneMockup>
-                  <AtoEditor settings={p.settings} content={p.content} interactive={o.interactive} />
+                  <Editor settings={p.settings} content={p.content} interactive={o.interactive} />
                 </PhoneMockup>
               </div>
               <div className="flex flex-col items-center">
