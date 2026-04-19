@@ -1,13 +1,10 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { FolderOpen } from 'lucide-react'
 import './Editor.css'
 import { type Settings } from './settings'
-import { MenuPanel } from './MenuPanel'
-import { FilesPanel } from './FilesPanel'
-import { IconButton } from './Button'
-import { MenuButtonIcon } from './MenuButtonIcon'
+
+export type EditorBlock = string | React.ReactNode
 
 type OgpData = { title: string | null; description: string | null; image: string | null; siteName: string | null; url: string }
 
@@ -114,21 +111,66 @@ function renderLine(line: string, i: number, imageFrame: Settings['editorImageFr
   return <p key={i} style={sectionColors.normal ? { color: sectionColors.normal } : undefined}>{renderInline(line, ruby, bold)}</p>
 }
 
+function renderBlock(block: EditorBlock, i: number, settings: Settings): React.ReactNode {
+  if (typeof block === 'string') {
+    return renderLine(block, i, settings.editorImageFrame, settings.editorImageRotate, settings.sectionColors, settings.editorRuby)
+  }
+  return <React.Fragment key={i}>{block}</React.Fragment>
+}
+
+const PUNCT_END_REGEX = /[、。，．」）]/
+const PUNCT_START_REGEX = /[「（]/
+const PUNCT_ANY_REGEX = /[、。，．「」（）]/
+
+function wrapPunctuation(root: HTMLElement) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode: (n) => {
+      const parent = n.parentElement
+      if (!parent) return NodeFilter.FILTER_REJECT
+      if (parent.classList.contains('ato-punct-end') || parent.classList.contains('ato-punct-start')) return NodeFilter.FILTER_REJECT
+      if (parent.closest('code, pre')) return NodeFilter.FILTER_REJECT
+      return PUNCT_ANY_REGEX.test(n.textContent ?? '') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+    },
+  })
+  const targets: Text[] = []
+  let node: Node | null
+  while ((node = walker.nextNode())) targets.push(node as Text)
+  for (const textNode of targets) {
+    const text = textNode.textContent ?? ''
+    const parent = textNode.parentNode
+    if (!parent) continue
+    const frag = document.createDocumentFragment()
+    let buf = ''
+    for (const ch of text) {
+      const isEnd = PUNCT_END_REGEX.test(ch)
+      const isStart = PUNCT_START_REGEX.test(ch)
+      if (isEnd || isStart) {
+        if (buf) { frag.appendChild(document.createTextNode(buf)); buf = '' }
+        const span = document.createElement('span')
+        span.className = isEnd ? 'ato-punct-end' : 'ato-punct-start'
+        span.textContent = ch
+        frag.appendChild(span)
+      } else {
+        buf += ch
+      }
+    }
+    if (buf) frag.appendChild(document.createTextNode(buf))
+    parent.replaceChild(frag, textNode)
+  }
+}
+
 export function Editor({
-  settings: initialSettings,
+  settings,
   content,
-  interactive = false,
+  className,
+  style,
 }: {
   settings: Settings
-  content: string[]
-  interactive?: boolean
+  content: EditorBlock[]
+  className?: string
+  style?: React.CSSProperties
 }) {
-  const [settings, setSettings] = useState<Settings>(initialSettings)
-  const [open, setOpen] = useState(false)
-  const [filesOpen, setFilesOpen] = useState(false)
-  const [editingPositions, setEditingPositions] = useState(false)
-  const safeRef = useRef<HTMLDivElement>(null)
-  const draggingRef = useRef<'menu' | 'files' | null>(null)
+  const textRef = useRef<HTMLDivElement>(null)
 
   const subColor = `color-mix(in srgb, ${settings.textColor} 55%, ${settings.editorBgColor} 45%)`
   const editorStyle: React.CSSProperties & Record<string, string | number> = {
@@ -137,6 +179,7 @@ export function Editor({
     '--ato-text': settings.textColor,
     '--ato-sub': subColor,
     '--ato-border': settings.panelBorder.color.top,
+    '--ato-surface': `color-mix(in srgb, ${settings.textColor} 4%, ${settings.editorBgColor})`,
     '--ato-font-kanji': settings.fontKanji,
     '--ato-font-kana': settings.fontKana,
     '--ato-font-alnum': settings.fontAlnum,
@@ -144,6 +187,7 @@ export function Editor({
     '--ato-ui-bg-color': settings.uiBgColor,
     '--ato-ui-fg-color': settings.panelTextColor ?? settings.textColor,
     '--ato-button-radius': `${settings.buttonBorderRadius}px`,
+    '--ato-panel-radius': `${settings.panelBorderRadius}px`,
     '--ato-width': `${settings.editorWidth}%`,
     '--ato-size-normal': `${settings.sectionSize.normal}px`,
     '--ato-size-h1': `${settings.sectionSize.h1}px`,
@@ -160,145 +204,29 @@ export function Editor({
     '--ato-ls-h2': `${settings.sectionLetterSpacing.h2}em`,
     '--ato-ls-h3': `${settings.sectionLetterSpacing.h3}em`,
     '--ato-ls-bold': `${settings.sectionLetterSpacing.bold}em`,
-    // 共通UIパーツ (components/*) が参照する汎用トークン
     '--ui-fg': settings.textColor,
     '--ui-sub': subColor,
     '--ui-bg': settings.editorBgColor,
     '--ui-surface': settings.uiBgColor,
     '--ui-border': settings.panelBorder.color.top,
+    ...style,
   }
+
+  useEffect(() => {
+    if (textRef.current) wrapPunctuation(textRef.current)
+  }, [content])
 
   return (
     <div
-      className="ato-editor"
+      className={className ? `ato-editor ${className}` : 'ato-editor'}
       data-rule={settings.editorRule}
       style={editorStyle}
     >
-      <div ref={safeRef} className="ato-editor__safe">
-        <div className="ato-editor__content" data-direction={settings.direction}>
-          <div className="ato-editor__text">
-            {content.map((line, i) => renderLine(line, i, settings.editorImageFrame, settings.editorImageRotate, settings.sectionColors, settings.editorRuby))}
-          </div>
+      <div className="ato-editor__content" data-direction={settings.direction}>
+        <div className="ato-editor__text" ref={textRef}>
+          {content.map((block, i) => renderBlock(block, i, settings))}
         </div>
-
-        {interactive && editingPositions && (
-          <div className="absolute inset-0 z-20 pointer-events-none" style={{ background: 'rgba(0,0,0,0.35)' }}>
-            <div className="absolute top-4 left-0 right-0 text-center text-white text-[11px] px-4">
-              ボタンをドラッグして位置を調整
-            </div>
-          </div>
-        )}
-
-        <IconButton
-          settings={settings}
-          aria-label="menu"
-          onClick={() => { if (!interactive || editingPositions) return; setOpen((s) => !s) }}
-          onPointerDown={(e) => {
-            if (!editingPositions) return
-            e.preventDefault()
-            e.stopPropagation()
-            draggingRef.current = 'menu'
-            ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
-          }}
-          onPointerMove={(e) => {
-            if (draggingRef.current !== 'menu') return
-            const rect = safeRef.current?.getBoundingClientRect()
-            if (!rect) return
-            const x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100))
-            const y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100))
-            setSettings((s) => ({ ...s, menuPosition: { x, y } }))
-          }}
-          onPointerUp={() => { draggingRef.current = null }}
-          style={{
-            position: 'absolute',
-            zIndex: editingPositions ? 50 : 30,
-            left: `${settings.menuPosition.x}%`,
-            top: `${settings.menuPosition.y}%`,
-            transform: 'translate(-50%, -50%)',
-            cursor: editingPositions ? 'grab' : 'pointer',
-            touchAction: editingPositions ? 'none' : undefined,
-          }}
-          disabled={!interactive}
-        >
-          <MenuButtonIcon design={settings.menuButtonDesign} image={settings.menuButtonImage} />
-        </IconButton>
-
-        {settings.files && (
-          <IconButton
-            settings={settings}
-            aria-label="files"
-            onClick={() => { if (!interactive || editingPositions) return; setFilesOpen((s) => !s) }}
-            onPointerDown={(e) => {
-              if (!editingPositions) return
-              e.preventDefault()
-              e.stopPropagation()
-              draggingRef.current = 'files'
-              ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
-            }}
-            onPointerMove={(e) => {
-              if (draggingRef.current !== 'files') return
-              const rect = safeRef.current?.getBoundingClientRect()
-              if (!rect) return
-              const x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100))
-              const y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100))
-              setSettings((s) => ({ ...s, filesPosition: { x, y } }))
-            }}
-            onPointerUp={() => { draggingRef.current = null }}
-            style={{
-              position: 'absolute',
-              zIndex: editingPositions ? 50 : 30,
-              left: `${settings.filesPosition.x}%`,
-              top: `${settings.filesPosition.y}%`,
-              transform: 'translate(-50%, -50%)',
-              cursor: editingPositions ? 'grab' : 'pointer',
-              touchAction: editingPositions ? 'none' : undefined,
-            }}
-            disabled={!interactive}
-          >
-            <FolderOpen size={20} strokeWidth={1.4} />
-          </IconButton>
-        )}
-
-        {interactive && editingPositions && (
-          <button
-            type="button"
-            onClick={() => setEditingPositions(false)}
-            className="absolute bottom-6 left-1/2 px-6 py-2 rounded-full text-xs font-medium z-50"
-            style={{ background: '#fff', color: '#000', transform: 'translateX(-50%)' }}
-          >
-            完了
-          </button>
-        )}
-
-        {interactive && filesOpen && !editingPositions && (
-          <>
-            <button
-              type="button"
-              aria-label="close files"
-              onClick={() => setFilesOpen(false)}
-              className="absolute inset-0 z-30 bg-transparent cursor-default"
-            />
-            <FilesPanel settings={settings} />
-          </>
-        )}
-
-        {interactive && open && !editingPositions && (
-          <>
-            <button
-              type="button"
-              aria-label="close"
-              onClick={() => setOpen(false)}
-              className="absolute inset-0 z-30 bg-transparent cursor-default"
-            />
-            <MenuPanel
-              settings={settings}
-              onChange={setSettings}
-              onOpenPositionPicker={() => { setOpen(false); setEditingPositions(true) }}
-            />
-          </>
-        )}
       </div>
     </div>
   )
 }
-

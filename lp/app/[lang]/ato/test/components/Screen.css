@@ -1,0 +1,39 @@
+/* ============================================================
+ * Screen — Editor + Button + Panel を合成する全画面コンテナ。
+ * safe-area (iPhone notch / home indicator) の扱いもここ。
+ * ============================================================ */
+
+.ato-screen {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  /* iPhone Dynamic Island / ホームインジケータを避ける安全領域 */
+  --ato-safe-top: 59px;
+  --ato-safe-bottom: 34px;
+  --ato-safe-left: 0px;
+  --ato-safe-right: 0px;
+}
+
+.ato-screen__safe {
+  position: absolute;
+  top: var(--ato-safe-top);
+  right: var(--ato-safe-right);
+  bottom: var(--ato-safe-bottom);
+  left: var(--ato-safe-left);
+  overflow: hidden;
+}
+
+/* Editor を safe 領域いっぱいに広げる */
+.ato-screen__safe > .ato-editor {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ato-screen__safe > .ato-editor > .ato-editor__content {
+  height: 100%;
+  width: 100%;
+  padding: 16px 24px;
+  overflow: hidden;
+}

@@ -1,50 +1,29 @@
 /* ============================================================
- * Editor — 構造のみ。見た目トークンは settings.ts から
- * CSS変数として流し込まれる (Editor が style に注入)。
+ * Editor — テキスト表示のみを責務とする。
+ * chrome (safe-area / button / panel) は Screen.css 側。
+ * 見た目トークンは settings.ts → Editor が style に注入した CSS変数から読む。
  * ============================================================ */
 
 @import './fonts.css';
 
 .ato-editor {
-  /* iPhone Dynamic Island / ホームインジケータを避ける安全領域 */
-  --ato-safe-top: 59px;
-  --ato-safe-bottom: 34px;
-  --ato-safe-left: 0px;
-  --ato-safe-right: 0px;
-
   background-color: var(--ato-editor-bg-color);
   background-image: var(--ato-editor-bg-image, none);
-  /* note: --ato-editor-bg-image は画像 URL、-bg-color は色。一方だけ使われる */
   background-size: cover;
   background-position: center;
   color: var(--ato-text);
   font-family: var(--ato-font-alnum), var(--ato-font-kana), var(--ato-font-kanji), sans-serif;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.ato-editor__safe {
-  position: absolute;
-  top: var(--ato-safe-top);
-  right: var(--ato-safe-right);
-  bottom: var(--ato-safe-bottom);
-  left: var(--ato-safe-left);
-  overflow: hidden;
+  /* 日本語組版 */
+  text-align: justify;
+  line-break: strict;
 }
 
 .ato-editor__content {
-  padding: 16px 24px;
-  width: 100%;
-  height: 100%;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .ato-editor__content[data-direction="vertical-rl"] {
   writing-mode: vertical-rl;
-  padding: 16px 24px;
 }
 
 .ato-editor__content[data-direction="vertical-rl"] .ato-editor__text {
@@ -99,6 +78,103 @@
   line-height: var(--ato-lh-bold, inherit);
   letter-spacing: var(--ato-ls-bold, 0);
   font-weight: bold;
+}
+
+/* h2 の下線装飾 */
+.ato-editor__text h2 {
+  position: relative;
+}
+
+.ato-editor__text h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + 32px);
+  height: 1px;
+  background: var(--ato-border);
+}
+
+/* 本文ブロック */
+.ato-editor__text ul {
+  padding-left: 24px;
+  margin: 0 0 16px;
+}
+
+.ato-editor__text li {
+  margin: 4px 0;
+}
+
+.ato-editor__text code {
+  font-family: ui-monospace, monospace;
+  background: var(--ato-surface);
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 0.85em;
+  letter-spacing: 0;
+}
+
+.ato-editor__text table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 16px 0;
+  table-layout: fixed;
+}
+
+.ato-editor__text th:nth-child(1), .ato-editor__text td:nth-child(1) { width: 160px; }
+.ato-editor__text th:nth-child(2), .ato-editor__text td:nth-child(2) { width: 140px; }
+.ato-editor__text th:nth-child(3), .ato-editor__text td:nth-child(3) { width: 110px; }
+.ato-editor__text th:nth-child(4), .ato-editor__text td:nth-child(4) { width: auto; }
+
+.ato-editor__text th, .ato-editor__text td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ato-border);
+  vertical-align: top;
+}
+
+.ato-editor__text th {
+  font-weight: 600;
+  background: var(--ato-surface);
+}
+
+.ato-editor__text .demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0 24px;
+}
+
+.ato-editor__text .demo-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ato-sub);
+}
+
+.ato-editor__text .panel-wrap {
+  width: 180px;
+  min-height: 180px;
+  display: flex;
+}
+
+.ato-editor__text .panel-wrap > div {
+  flex: 1;
+  padding: 0 10px 12px;
+}
+
+/* 日本語句読点のカーニング (JSで span を挿入する前提) */
+.ato-editor__text .ato-punct-end {
+  display: inline;
+  margin-inline-end: -0.4em;
+}
+
+.ato-editor__text .ato-punct-start {
+  display: inline;
+  margin-inline-start: -0.4em;
 }
 
 .ato-image {
